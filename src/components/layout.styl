@@ -1,0 +1,158 @@
+@import url("http://fonts.googleapis.com/css?family=Source+Code+Pro|Montserrat");
+
+// Colors
+$highlight = #CB772F // Orange
+$warning = #D25252 // Red
+$comment = #808080 // Darker grey
+$javadoc = #619647 // Green
+$string = #A5C25C // Light green
+
+// Set variables that bootstrap will use
+$gray-base ?= #7D8C93
+
+$body-bg ?= #1E1E23
+
+$modal-content-bg ?= $body-bg
+$modal-header-border-color ?= $body-bg + 10%
+
+$font-family-sans-serif ?= "Montserrat", "Helvetical Neue", Helvetica, Arial, sans-serif
+$font-family-monospace ?= "Source Code Pro", Menlo, Monaco, Consolas, "Courier New", monospace
+$font-size-base ?= 18px
+
+$icon-font-path = "/components/bootstrap-stylus/fonts/"
+
+// Import bootstrap
+@require bootstrap
+//@require '../components/bootstrap-stylus/bootstrap/index.styl'
+//@require '../components/bootstrap-stylus/bootstrap/theme.styl'
+
+// Set variables we will use
+$font-size-monospace = 18px
+$page-headline-margin = 50px;
+$shellbar-height = 2em + $line-height-base
+
+// CSS
+body
+  line-height 1.6
+
+.body-header
+  padding 1em
+  border none
+  
+
+.warning
+  color: $warning
+
+button.btn
+  font-family "Source Code Pro"
+  border-radius 10px
+
+.btn-primary, .btn-primary:hover
+  color $string
+  border-color $string
+  border-width 2px
+  background-color transparent
+
+.btn-primary:hover
+  box-shadow 0px 0px 0px 1px @border-color
+
+// Showcase
+
+$showcase-header-height = 50px
+
+.showcase
+  margin-bottom 50px;
+
+.showcase .header
+  height $showcase-header-height
+
+.showcase .header > img
+  height $showcase-header-height
+  width $showcase-header-height
+  margin-right 1em
+  float left
+
+.showcase .header > .header-text
+  line-height $showcase-header-height
+  font-size 23px
+  margin 0
+  float left
+
+.showcase .header > .header-text > span.small
+  font-size 50%
+
+.showcase > p
+  margin-top 5px
+
+
+// Abandoned shell experiment
+.shell
+  position absolute
+  top 0
+  left 0
+  right 0
+  font-family $font-family-monospace
+  font-size $font-size-monospace
+  padding 1em
+  color white
+  height $shellbar-height
+  background-color black
+  opacity 0.9
+  overflow hidden
+
+.shell.open
+  height 800px
+
+#shell-panel
+  height 100%
+  overflow-y hidden
+  position relative
+
+#shell-view
+  position absolute
+  bottom 0
+
+.top-thing 
+  margin-top $page-headline-margin
+  margin-bottom $page-headline-margin
+
+.top-thing h1
+  @media (max-width: $screen-sm-min - 1)
+    margin-top 0
+
+.userpic
+  border 4px solid grey
+  height 100px
+  border-radius 50px
+
+  @media (min-width: $screen-sm-min)
+    height 150px
+    border-radius 75px
+
+.under-top-thing 
+  margin-top $page-headline-margin
+
+// SVG
+path.content
+  fill none
+  stroke-width 2.5px
+  stroke-linejoin round
+
+// History X Axis
+.history .xaxis .domain
+  fill none
+  stroke-width 1px
+  stroke $comment
+  shape-rendering crispEdges
+
+.history .tick text
+  fill $comment
+  font-size small
+
+.history .yaxis .domain
+  display none
+
+.history .yaxis .tick line
+  stroke $comment
+  stroke-dasharray 2,6
+  shape-rendering crispEdges
