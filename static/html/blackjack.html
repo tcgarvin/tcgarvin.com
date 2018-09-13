@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- This used to be a jade (pug) template, but switched to static html when I redid the site. May contain issues, and may be impossible to maintain in the mid-long term-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Blackjack Simulation - tcgarvin.com</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+    <script src="../js/blackjack.js"></script>
+</head>
+
+<body>
+    <div class="body-header"><a href="/">tcgarvin.com</a></div>
+    <svg class="blackjack"></svg>
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">BlackJack Simulation Tech Spike</h4></div>
+                <div class="modal-body">
+                    <p>A simulation of 1000 blackjack games using <a href="http://wizardofodds.com/games/blackjack/strategy/4-decks/">basic strategy</a>.</p>
+                    <p>On the left side of the screen, you'll see the cards being played. On the right side of the screen, you'll see the winnings/losings of the strategy over time, with $10 bets each hand.</p><small><p> 
+Heads up -- if you're on a <span class="warning">mobile device</span>, this spike may:</p><ol><li><span class="warning">Look terrible.</span></li><li><span class="warning">Diminish your battery.</span></li></ol></small><a role="button" data-toggle="collapse" href=".spikeNotes" class="showNotes">Notes</a>
+                    <div class="notes spikeNotes collapse"><small><p>The technical bits in this spike include:</p><ul><li>A blackjack engine <a href="http://github.com/tcgarvin/bjjs">written in node</a>, running in your browser thanks to browserify.</li><li>A simple d3.js graph showing progress over each hand.</li><li>A d3.js illustration of each hand.  The difficult part here is getting web-ready SVG cards. Ended up converting <a href="http://sourceforge.net/projects/vector-cards/">these</a> myself.  (The 5 of spades still doesn't show up, and I still need to dedup the pip paths to bring the size down from 700kB.)</li></ul></small></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary runSpike">Run Spike</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

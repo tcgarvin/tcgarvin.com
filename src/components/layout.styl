@@ -1,6 +1,9 @@
 @import url("http://fonts.googleapis.com/css?family=Source+Code+Pro|Montserrat");
 
 // Colors
+
+$link-color = #33a0ff // Blue
+$link-hover-color = $link-color
 $highlight = #CB772F // Orange
 $warning = #D25252 // Red
 $comment = #808080 // Darker grey
@@ -8,7 +11,7 @@ $javadoc = #619647 // Green
 $string = #A5C25C // Light green
 
 // Set variables that bootstrap will use
-$gray-base ?= #7D8C93
+$gray-base ?= #92a1a8
 
 $body-bg ?= #1E1E23
 
@@ -83,34 +86,6 @@ $showcase-header-height = 50px
 
 .showcase > p
   margin-top 5px
-
-
-// Abandoned shell experiment
-.shell
-  position absolute
-  top 0
-  left 0
-  right 0
-  font-family $font-family-monospace
-  font-size $font-size-monospace
-  padding 1em
-  color white
-  height $shellbar-height
-  background-color black
-  opacity 0.9
-  overflow hidden
-
-.shell.open
-  height 800px
-
-#shell-panel
-  height 100%
-  overflow-y hidden
-  position relative
-
-#shell-view
-  position absolute
-  bottom 0
 
 .top-thing 
   margin-top $page-headline-margin
