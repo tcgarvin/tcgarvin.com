@@ -9,7 +9,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 
 const IndexPage = () => (
-  <Layout linkHome={false}>
+  <Layout pageTitle="Hello" linkHome={false}>
     <Grid>
       <Row>
         <Col xs={12} md={8} mdOffset={2}>
