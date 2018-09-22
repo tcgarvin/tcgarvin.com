@@ -10,6 +10,18 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 const IndexPage = () => (
   <Layout pageTitle="Hello" linkHome={false}>
+    <div className="top-thing">
+      <Grid>
+        <Row>
+          <Col xs={5} sm={6} className="text-right">
+            <img alt="Tim" className="userpic" src={withPrefix("images/me.jpg")}/>
+          </Col>
+          <Col xs={7} sm={6} className="text-left">
+            <h1>Hello,<br/>I'm Tim<span className="hidden-xs">.</span></h1>
+          </Col>
+        </Row>
+      </Grid>
+    </div>
     <Grid>
       <Row>
         <Col xs={12} md={8} mdOffset={2}>
@@ -18,7 +30,6 @@ const IndexPage = () => (
           <p>I'm presently employed with <a href="https://www.pwc.com">PricewaterhouseCoopers</a>. Prior to that, I made my living writing <a href="https://www.ibm.com/us-en/marketplace/application-release-automation">DevOps tools</a> for IBM. I was also heavily involved in the creation of the <a href="http://protectus.com/sentry">Protectus Sentry</a>, a product I still love, use, and support.</p>
           <p>Non-code things I'm involved in include <a href="http://thefest.us">The FEST</a>, getting to know my lovely wife and son, being a studious Catholic, and riding the bus.</p>
           <p>I've also got a few <Link to="/code/">side projects and code spikes</Link> that I play around with.</p>
-          <p>Test <a href={withPrefix("/html/blackjack.html")}>Blackjack</a></p>
         </Col>
       </Row>
     </Grid>
