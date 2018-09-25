@@ -5,13 +5,14 @@ import Helmet from 'react-helmet'
 import Header from './header'
 import './layout.styl'
 
-const Layout = ({ children, pageTitle, linkHome }) => {
+const Layout = ({ children, pageTitle, description, linkHome }) => {
   let title = pageTitle + " - tcgarvin.com";
   return <>
     <Helmet
       title={title}
       meta={[
         { name: 'viewport', content: 'width=device-width' },
+        { name: 'description', content: description }
       ]}
     >
       <html lang="en" />
