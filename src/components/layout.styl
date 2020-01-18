@@ -30,6 +30,7 @@ $icon-font-path = "/components/bootstrap-stylus/fonts/"
 //@require '../components/bootstrap-stylus/bootstrap/theme.styl'
 
 // Set variables we will use
+$h2-top-margin = 35px;
 $font-size-monospace = 18px
 $page-headline-margin = 50px;
 $shellbar-height = 2em + $line-height-base
@@ -38,10 +39,11 @@ $shellbar-height = 2em + $line-height-base
 body
   line-height 1.6
 
+h2
+  margin-top $h2-top-margin
+
 .body-header
-  padding 1em
   border none
-  
 
 .warning
   color: $warning
@@ -103,9 +105,6 @@ $showcase-header-height = 50px
   @media (min-width: $screen-sm-min)
     height 150px
     border-radius 75px
-
-.under-top-thing 
-  margin-top $page-headline-margin
 
 // SVG
 path.content
