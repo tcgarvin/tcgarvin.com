@@ -1,26 +1,5 @@
-# gatsby-starter-default
-The default Gatsby starter.
+# tcgarvin.com
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/02fe7632-02df-4d43-a6f4-6e0a73a7f05a/deploy-status)](https://app.netlify.com/sites/suspicious-jackson-84d7b9/deploys)
 
-## Install
-
-Make sure that you have the Gatsby CLI program installed:
-```sh
-npm install --global gatsby-cli
-```
-
-And run from your CLI:
-```sh
-gatsby new gatsby-example-site
-```
-
-Then you can run it by:
-```sh
-cd gatsby-example-site
-gatsby develop
-```
-
-## Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+This is the source code for tcgarvin.com.  It is built using Gatsby and deployed using Netlify.
