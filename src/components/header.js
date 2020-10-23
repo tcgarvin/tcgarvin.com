@@ -1,8 +1,15 @@
 import React from 'react'
+import { Grid, Row, Col } from 'react-bootstrap';
 
 const Header = ({ linkHome }) => (
   <div class="body-header">
-    {linkHome !== false && <a href="/">tcgarvin.com</a>}
+    <Grid>
+      <Row>
+        <Col xs={12}>
+          {linkHome !== false && <a href="/">tcgarvin.com</a>}
+        </Col>
+      </Row>
+    </Grid>
   </div>
 )
 
