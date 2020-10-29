@@ -22,6 +22,12 @@ module.exports = {
         use: [bootstrap()]
       }
     },
+    {
+      resolve: `gatsby-plugin-gtag`,
+      options: {
+        trackingId: `G-G2ZCNG9K9C`,
+      },
+    },
     'gatsby-plugin-offline'
   ],
 }
