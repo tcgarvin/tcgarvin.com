@@ -4,6 +4,15 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import Layout from '../components/layout'
 
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import python from 'react-syntax-highlighter/dist/esm/languages/hljs/python';
+import docco from 'react-syntax-highlighter/dist/esm/styles/hljs/docco';
+import atomOneDarkReasonable from 'react-syntax-highlighter/dist/esm/styles/hljs/atom-one-dark-reasonable';
+
+const defaultStyle = atomOneDarkReasonable;
+
+SyntaxHighlighter.registerLanguage('python', python);
+
 const CodePage = () => (
   <Layout pageTitle="Mourning My Father by Open Sourcing Our Code" hXs={12} hMd={10} hMdOffset={1} hLg={8} hLgOffset={2}>
     <Grid>
@@ -60,8 +69,8 @@ const CodePage = () => (
           <h2>Seeing Dad in the Code</h2>
           <p>In preparing the code to be released, I spent some time browsing git history and its contents.  At first I was caught off guard by how potent seeing his comments was.  It’s not like he left jokes around or anything, but this this codebase (including a lot that I’m not open sourcing today) has his heart and soul in it.</p>
 
-<pre>
-# Adding vlan id - PFG - April 2014
+          <SyntaxHighlighter language="python" style={defaultStyle} wrapLines={true} showLineNumbers={true} startingLineNumber={268}>
+{`# Adding vlan id - PFG - April 2014
 # No way of knowing how long the packet is so add vlan id after timestamp.
 # If field after timestamp contains dots or colons, then it is a src (mac or ip).
 # Otherwise, it must be a vlan id.
@@ -75,15 +84,14 @@ if pkt and not doc:
             # Ensure msg length does not exceed Mongo's Index Key Limit
             if len(msg) > 512: 
                 msg = msg[:512] + b'...'
-                break
-</pre>
+                break`}
+          </SyntaxHighlighter>
+          <p><em><small><a href="https://github.com/protectus/pfring-to-mongo/blob/673415fb721e879f2b3aac9da52dd0454f29f111/trafcap/trafcapEthernetPacket.py#L268">Source</a></small></em></p>
 
-https://github.com/protectus/pfring-to-mongo/blob/673415fb721e879f2b3aac9da52dd0454f29f111/trafcap/trafcapEthernetPacket.py#L268
+          <p>Dad, your code could be incredibly, uh, organic.  And not always the most deliberate. (sorry) It is exactly what you would expect from a solo C programmer certa 1990, which is basically what dad was.  He would write a passable algorithm the first time, and then tweaked it with if statements over time, resulting in code that was less and less maintainable.  Even though we were working in Python (which I think he really liked), his code structure was the good old C standby of “throw a bunch of functions into a file”.  The mess of code above started out more copacetically.</p>
 
-          <p>Dad’s code could be incredibly, uh, organic.  It is exactly what you would expect from a solo C programmer certa 1990, which is basically what dad was.  He would write a passable algorithm the first time, and then tweaked it with if statements over time, resulting in code that was less and less maintainable.  Even though we were working in Python (which I think he really liked), his code structure was the good old C standby of “throw a bunch of functions into a file”.  The mess of code above started out more copacetically.</p>
-
-<pre>
-# Adding vlan id - PFG - April 2014
+          <SyntaxHighlighter language="python" style={defaultStyle} wrapLines={true} showLineNumbers={true} startingLineNumber={233}>
+{`# Adding vlan id - PFG - April 2014
 # No way of knowing how long the packet is so add vlan id after timestamp.
 # If field after timestamp contains dots or colons, then it is a src (mac or ip).
 # Otherwise, it must be a vlan id.
@@ -93,10 +101,9 @@ if pkt and not doc:
     if '.' in pkt[1] or ':' in pkt[1]:
         msg = pkt[5]
         for i in range(6, len(pkt), 1):
-            msg = msg + " " + pkt[i]
-</pre>
-
-https://github.com/protectus/pfring-to-mongo/blob/821b42c5a8c68b0f2ca4b50773f391724eeea592/python/protectus-sentry/protectus_sentry/trafcap/trafcapEthernetPacket.py#L233
+            msg = msg + " " + pkt[i]`}
+          </SyntaxHighlighter>
+          <p><em><small><a href="https://github.com/protectus/pfring-to-mongo/blob/821b42c5a8c68b0f2ca4b50773f391724eeea592/python/protectus-sentry/protectus_sentry/trafcap/trafcapEthernetPacket.py#L233">Source</a></small></em></p>
 
           <p>... Still not beautiful, and you have to know what pkt and doc are, because they’re definitely not self-documenting, but you know, better.</p>
 
@@ -106,7 +113,7 @@ https://github.com/protectus/pfring-to-mongo/blob/821b42c5a8c68b0f2ca4b50773f391
 
           <p>You can’t buy the kind of startup experience I got working with Dad.  Every mistake I made, every design decision, I was the one who had to take responsibility with the repercussions, just because we were a two-man shop, and he trusted me.  I haven’t found that kind of learning environment anywhere else.</p>
 
-          <p>Technical things I learned from or with Dad:
+          <p>Technical things I learned from or with Dad:</p>
           <ul> 
             <li>Early on we recognized the value a monorepo could bring, years before anyone used that word</li>
             <li>I hammered together a CI/CD pipeline from batch scripts. We judged Jenkins to be more infrastructure than we needed</li>
@@ -114,9 +121,8 @@ https://github.com/protectus/pfring-to-mongo/blob/821b42c5a8c68b0f2ca4b50773f391
             <li>We maintained multiple release channels and used feature flags to let us quickly respond to customers who wanted more now, without endangering customers who were happy with stability</li>
             <li>We managed an entire fleet of machines with only a few hours a month to coordinate software upgrades</li>
           </ul>
-          </p>
 
-          <p><strong>More important yet</strong> was the concept working with Dad gave me that wearing lots of hats is fun.  If you're reading this because you're wondering if I'd be a good fit at your company, just know that I will probably not be happy doing only one kind of work.  With Dad, I:
+          <p><strong>More important yet</strong> was the concept working with Dad gave me that wearing lots of hats is fun.  If you're reading this because you're wondering if I'd be a good fit at your company, just know that I will probably not be happy doing only one kind of work.  With Dad, I:</p>.
           <ul>
             <li>Slung Code in Python, Cython, JS and Bash</li>
             <li>Administered a Xen VM farm</li>
@@ -127,7 +133,6 @@ https://github.com/protectus/pfring-to-mongo/blob/821b42c5a8c68b0f2ca4b50773f391
             <li>Designed implimented and shipped a marketing site (yes it's bad, but it's mine)</li>
             <li>Designed and chose chips for a custom form factor Ethernet tap, and worked with the hardware design firm to design and then test their prototypes</li>
           </ul>
-          </p>
 
           <p><strong>Even more important yet</strong> were the non-work things Dad taught me.  But that's a little out of scope today.</p>
 

@@ -16,7 +16,8 @@
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.0",
-    "react-masonry-component": "^6.2.1"
+    "react-masonry-component": "^6.2.1",
+    "react-syntax-highlighter": "^15.2.1"
   },
   "engines": {
     "node": "^10.8.0"
