@@ -50,6 +50,11 @@ const CodePage = () => (
 
           <p><a href="https://github.com/protectus/pfring-to-mongo">Here's the code.</a></p>
 
+          <br></br>
+          <p>
+          <img alt="Trafcap Contributors" width="100%" src={withPrefix("images/trafcap-contributors.jpg")}/>
+          <em><small>Dad and I wrote all the code.  This graph shows a partial history of the ingest code I've released, which was more Dad's than mine.</small></em></p>
+
           <h2>Seeing Dad in the Code</h2>
           <p>In preparing the code to be released, I spent some time browsing git history and its contents.  At first I was caught off guard by how potent seeing his comments was.  It’s not like he left jokes around or anything, but this this codebase (including a lot that I’m not open sourcing today) has his heart and soul in it.</p>
 
