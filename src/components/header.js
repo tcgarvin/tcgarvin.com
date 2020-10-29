@@ -9,7 +9,7 @@ const Header = ({ linkHome, xs, xsOffset, md, mdOffset, lg, lgOffset }) => {
   mdOffset = mdOffset || xsOffset;
   lgOffset = lgOffset || mdOffset;
   
-  return <div class="body-header">
+  return <div className="body-header">
     <Grid>
       <Row>
         <Col xs={xs} xsOffset={xsOffset} md={md} mdOffset={mdOffset} lg={lg} lgOffset={lgOffset}>

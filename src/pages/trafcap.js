@@ -6,7 +6,6 @@ import Layout from '../components/layout'
 
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import python from 'react-syntax-highlighter/dist/esm/languages/hljs/python';
-import docco from 'react-syntax-highlighter/dist/esm/styles/hljs/docco';
 import atomOneDarkReasonable from 'react-syntax-highlighter/dist/esm/styles/hljs/atom-one-dark-reasonable';
 
 const defaultStyle = atomOneDarkReasonable;
@@ -20,23 +19,23 @@ const CodePage = () => (
         <Col xs={12} md={10} mdOffset={1} lg={8} lgOffset={2}>
           <h1>Mourning My Father by Open Sourcing Our Code</h1>
           <img alt="Pete Garvin" width="100%" src={withPrefix("images/dad-compressed.jpg")}/>
-          <p><em>Tl;dr: I miss my dad.  I published some of the code we wrote together.</em></p>
+          <p><em>Tl;dr: I miss my dad.  I <a href="https://github.com/protectus/pfring-to-mongo">published</a> some of the code we wrote together.</em></p>
 
           <h3>Background</h3>
           <p>The phone call was short.  I asked how he was feeling, and if they had figured out what was going on yet. Dad evaded. They were still getting answers, he said. That was all I needed to hear.  I walked to the nearby park in the Fall air, sat on a bench under a remote tree, and lost my composure.</p>
 
-          <p>Sobbing is a really weird sound. Gasps and sniffs, heaves, tears, borderline hyperventilation. It was strange hearing these sounds come from me, especially when I had nothing more than my gut to inform my fears. I'd heard it in his voice.</p> 
+          <p>Sobbing is a really weird sound, I thought to myself. Gasps and sniffs, heaves, tears, borderline hyperventilation. I was not used to hearing these noises come from me, especially when I had nothing more than my gut to inform my fears.</p>
 
-          <p>Everything was not alright. The world was ending.</p>
+          <p>But I'd heard it in his voice. Everything was not alright. The world was ending.</p>
 
-          <p>As I grew up, it always seemed a little irrational to me that my deepest terror was losing my dad. At 15 years old, then 20, 25, I never really heard anyone around me talking about how important their dads were to them, and besides, it’s natural that a son lose his father, rather than a father lose his son. Right? And yet, even after the birth of my own sons reoriented my hopes and fears, the only anxiety late at night that could consistently latch onto my mind and not let go was how much I couldn’t bear to lose Dad.  Now my literal nightmares materialized.</p>
+          <p>As I grew up, it always seemed a little irrational to me that my deepest terror was losing my dad. At 15 years old, then 20, 25, I never really heard anyone around me talking about how vitally important their dads were to them. And besides, it’s natural that a son lose his father, rather than a father lose his son. Right? And yet, even after the birth of my own sons reoriented my hopes and fears, the only anxiety late at night that could consistently latch onto my mind — and not let go — was how much I couldn’t bear to lose Dad.  Now my literal nightmares materialized.</p>
 
-          <p>Today is the first aniversary of Pete Garvin's death. He died of cancer 4 weeks after his initial diagnosis. The weather report says it will rain all day from the hurricane. A family friend told me he was in the rain, and I believe her.</p>
+          <p>Today is the first aniversary of Pete Garvin's death. He died of cancer 4 weeks after his initial diagnosis. The weather report says it will rain all day today from the hurricane. A family friend told me the rain is from him for us, and I believe her.</p>
 
           <h2>My Motivations, In Brief</h2>
           <p>Before he fell ill, Dad and I would meet one evening a week at his office in Akron and work on little things around his company, <a href="https://www.protectus.com">Protectus LLC</a>.  I had helped him build the technology side of the company for a couple of years when I got out of school, and the weekly get together was a good way to exercise parts of my brain that my full-time jobs did not.  It wasn’t lost on me how privileged I was to spend so much time literally being paid to hang out with my own father.  When I look at my career so far, I can trace my success to 3 people.  Dad is at the top of that list.</p>
 
-          <p>I want Dad to be here with me.  I want him to look over my shoulder at this stupid website and ask me why the site styling is light on dark.  I want to find a way to keep a part of him alive with me, just a little longer.</p> 
+          <p>I want Dad to be here with me.  I want him to look over my shoulder at this stupid website and tell me that he thinks dark mode is harder to read.  I want to find a way to keep a part of him alive with me, just a little longer.</p> 
           <p>So, I’m trying to finalize our last project together.</p>
 
           <h2>The Project</h2>
@@ -107,7 +106,7 @@ if pkt and not doc:
 
           <p>... Still not beautiful, and you have to know what pkt and doc are, because they’re definitely not self-documenting, but you know, better.</p>
 
-          <p>And the stuff really worked. Dad understood better than most the value of simplicity in software architecture.  Even though our system was spread across several processes, and each process might interact directly with the database, a pattern that elicits shrieks of rage from most software designers I know, every interaction was well documented and the documentation strictly updated.  The flow of data was one-directional, and the state space was kept under tight control.  We were careful not to introduce too many dependencies.  The only frameworks we used were Debian Packaging, Pyramid, and BackboneJS.  Everything else was a library.  Though much of it was handwritten, the documentation was at least as good as any enterprise dev team I’ve ever encountered. (Though not as good as most open source projects I’ve seen)</p>
+          <p>And the stuff really worked. Dad understood better than most the value of simplicity in software architecture.  Even though our system was spread across several processes, and each process might interact directly with the database, (a pattern that elicits shrieks of rage from most software designers I know,) every interaction was well documented and the documentation strictly updated.  The flow of data was one-directional, and the state space was kept under tight control.  We were careful not to introduce too many dependencies.  The only frameworks we used were Debian Packaging, Pyramid, and BackboneJS.  Everything else was a library.  Though much of it was handwritten, the documentation was at least as good as any enterprise dev team I’ve encountered since. (Though not as good as most open source projects I’ve seen)</p>
 
           <p>As we scaled the Sentry onto higher volume networks, Python started to groan a bit under the load.  I ported a bunch of his ingest code to Cython over a few months, and Lo, his “let’s code this like it’s C” approach fit really intuitively with Cython’s “let’s turn this into C” approach.</p>
 
@@ -117,12 +116,12 @@ if pkt and not doc:
           <ul> 
             <li>Early on we recognized the value a monorepo could bring, years before anyone used that word</li>
             <li>I hammered together a CI/CD pipeline from batch scripts. We judged Jenkins to be more infrastructure than we needed</li>
-            <li>Instead of local environments, we developed remotely on the same hardware that would actually host the code in production, sidestepping an entire class of deployment issues</li>
+            <li>Instead of local environments, we developed remotely on instances of production environments, sidestepping an entire class of deployment issues</li>
             <li>We maintained multiple release channels and used feature flags to let us quickly respond to customers who wanted more now, without endangering customers who were happy with stability</li>
             <li>We managed an entire fleet of machines with only a few hours a month to coordinate software upgrades</li>
           </ul>
 
-          <p><strong>More important yet</strong> was the concept working with Dad gave me that wearing lots of hats is fun.  If you're reading this because you're wondering if I'd be a good fit at your company, just know that I will probably not be happy doing only one kind of work.  With Dad, I:</p>.
+          <p><strong>More important yet</strong> was the concept Dad gave me that wearing lots of hats is fun.  If you're from the future, wondering if I'd be a good fit at your company, just know that I will probably not be happy doing only one kind of work.  With Dad, I:</p>
           <ul>
             <li>Slung Code in Python, Cython, JS and Bash</li>
             <li>Administered a Xen VM farm</li>
@@ -130,6 +129,7 @@ if pkt and not doc:
             <li>Obtained my GPEN certification and performed pen testing against clients (because we were a security company)</li>
             <li>Used my own product to monitor client networks for security incidents</li>
             <li>Solicited customer feedback to improve my product</li>
+            <li>Did sales engineering and support</li>
             <li>Designed implimented and shipped a marketing site (yes it's bad, but it's mine)</li>
             <li>Designed and chose chips for a custom form factor Ethernet tap, and worked with the hardware design firm to design and then test their prototypes</li>
           </ul>

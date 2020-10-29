@@ -27,7 +27,7 @@ const Showcase = ({ children, title, imageUrl, link }) => (
 Showcase.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
   link: PropTypes.string
 }
 

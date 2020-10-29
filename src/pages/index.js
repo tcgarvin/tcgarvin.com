@@ -26,7 +26,7 @@ const IndexPage = () => (
     <Grid>
       <Row>
         <Col xs={12} md={8} mdOffset={2}>
-          <p>You've stumbled upon my personal site.  There's not much <em>too</em> content to be seen outside of a <Link to="/code">small gallery of projects</Link>.</p>
+          <p>You've stumbled upon my personal site.  There's not much <em>too</em> much content to be seen outside of a <Link to="/code">small gallery of projects</Link>.</p>
           <h2 className="under-top-thing">About Me</h2>
           <p>I'm a rapid prototyper at PwC. Prior to that, I made my living developing and brainstorming DevOps tools at IBM.  Straight out of school, my dad and I co-developed the <a href="http://protectus.com/sentry">Protectus Sentry</a>, a product that's still in the wild today.</p>
           <p>Non-code things I'm involved in include <a href="http://thefest.us">The FEST</a>, getting to know my lovely wife and two sons, being a studious Catholic, and riding the bus.</p>

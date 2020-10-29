@@ -1,5 +1,5 @@
 import React from 'react'
-import { withPrefix } from 'gatsby'
+import { Link, withPrefix } from 'gatsby'
 import { Grid, Row, Col } from 'react-bootstrap';
 
 import Layout from '../components/layout'
@@ -12,7 +12,7 @@ const CodePage = () => (
       <Row>
         <Col xs={12}>
           <h2>Things I've Done</h2>
-          <p>Time has flown since I got out of school, and I've picked up a few things along the way. You can browse some of them here if you want. Most of them are regrettably closed-source, but I've linked to Github when possible.</p>
+          <p>Time flies, and I try to remember how far I've come. You can browse some of my past and present projects here if you want. Some of them are closed-source, but I've linked to GitHub when possible.</p>
         </Col>
       </Row>
     </Grid>
@@ -26,6 +26,7 @@ const CodePage = () => (
           <Showcase title="Protectus Sentry" imageUrl={withPrefix('/images/protectus-thumbnail.png')} link="https://protectus.com/sentry" >
             <p>Built this with my dad.  I did the (Python) web app, he did everything else, and we met in the middle, in MongoDB.</p>
             <p>There's something to be said for building a product from scratch, and really owning it.</p>
+            <p>Dad died on October 29th, 2019.  On the first aniversary of his death, I've tried to remember him by open-sourcing some of our code.  <Link to="/trafcap">I put a few words together about it, too.</Link></p>
           </Showcase>
           <Showcase title="Dots" imageUrl="/images/ucd-thumbnail.png">
             <p>At UrbanCode, there was a period of time where we had a lot of trouble tracking work, especially around customer engagement. It's not that the data wasn't there, it's that the tools we had to navigate and understand that data were extremely limited.</p>
