@@ -87,7 +87,7 @@ if pkt and not doc:
           </SyntaxHighlighter>
           <p><em><small><a href="https://github.com/protectus/pfring-to-mongo/blob/673415fb721e879f2b3aac9da52dd0454f29f111/trafcap/trafcapEthernetPacket.py#L268">Source</a></small></em></p>
 
-          <p>Dad, your code could be incredibly, uh, organic.  And not always the most deliberate. (sorry) It is exactly what you would expect from a solo C programmer certa 1990, which is basically what dad was.  He would write a passable algorithm the first time, and then tweaked it with if statements over time, resulting in code that was less and less maintainable.  Even though we were working in Python (which I think he really liked), his code structure was the good old C standby of “throw a bunch of functions into a file”.  The mess of code above started out more copacetically.</p>
+          <p>Dad, your code could be incredibly, uh, organic.  And not always the most deliberate. (sorry) It is exactly what you would expect from a solo C programmer circa 1990, which is basically what dad was.  He would write a passable algorithm the first time, and then tweaked it with if statements over time, resulting in code that was less and less maintainable.  Even though we were working in Python (which I think he really liked), his code structure was the good old C standby of “throw a bunch of functions into a file”.  The mess of code above started out more copacetically.</p>
 
           <SyntaxHighlighter language="python" style={defaultStyle} wrapLines={true} showLineNumbers={true} startingLineNumber={233}>
 {`# Adding vlan id - PFG - April 2014
@@ -130,7 +130,7 @@ if pkt and not doc:
             <li>Used my own product to monitor client networks for security incidents</li>
             <li>Solicited customer feedback to improve my product</li>
             <li>Did sales engineering and support</li>
-            <li>Designed implimented and shipped a marketing site (yes it's bad, but it's mine)</li>
+            <li>Designed implemented and shipped a marketing site (yes it's bad, but it's mine)</li>
             <li>Designed and chose chips for a custom form factor Ethernet tap, and worked with the hardware design firm to design and then test their prototypes</li>
           </ul>
 
