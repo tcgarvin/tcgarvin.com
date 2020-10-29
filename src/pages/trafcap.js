@@ -5,7 +5,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import Layout from '../components/layout'
 
 const CodePage = () => (
-  <Layout pageTitle="Mourning My Father by Open Sourcing Our Code">
+  <Layout pageTitle="Mourning My Father by Open Sourcing Our Code" hXs={12} hMd={10} hMdOffset={1} hLg={8} hLgOffset={2}>
     <Grid>
       <Row>
         <Col xs={12} md={10} mdOffset={1} lg={8} lgOffset={2}>

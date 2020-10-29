@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 import Header from './header'
 import './layout.styl'
 
-const Layout = ({ children, pageTitle, description, linkHome }) => {
+const Layout = ({ children, pageTitle, description, linkHome, hXs, hXsOffset, hMd, hMdOffset, hLg, hLgOffset}) => {
   let title = pageTitle + " - tcgarvin.com";
   return <>
     <Helmet
@@ -17,7 +17,7 @@ const Layout = ({ children, pageTitle, description, linkHome }) => {
     >
       <html lang="en" />
     </Helmet>
-    <Header linkHome={linkHome}/>
+    <Header linkHome={linkHome} xs={hXs} xsOffset={hXsOffset} md={hMd} mdOffset={hMdOffset} lg={hLg} lgOffset={hLgOffset}/>
     {children}
   </>;
 }
