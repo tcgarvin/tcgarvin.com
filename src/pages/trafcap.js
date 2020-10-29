@@ -22,7 +22,7 @@ const CodePage = () => (
 
           <p>As I grew up, it always seemed a little irrational to me that my deepest terror was losing my dad. At 15 years old, then 20, 25, I never really heard anyone around me talking about how important their dads were to them, and besides, it’s natural that a son lose his father, rather than a father lose his son. Right? And yet, even after the birth of my own sons reoriented my hopes and fears, the only anxiety late at night that could consistently latch onto my mind and not let go was how much I couldn’t bear to lose Dad.  Now my literal nightmares materialized.</p>
 
-          <p>Pete Garvin, my dad, died of cancer 4 weeks after that phone call.</p>
+          <p>Today is the first aniversary of Pete Garvin's death. He died of cancer 4 weeks after his initial diagnosis. The weather report says it will rain all day from the hurricane. A family friend told me he was in the rain, and I believe her.</p>
 
           <h2>My Motivations, In Brief</h2>
           <p>Before he fell ill, Dad and I would meet one evening a week at his office in Akron and work on little things around his company, <a href="https://www.protectus.com">Protectus LLC</a>.  I had helped him build the technology side of the company for a couple of years when I got out of school, and the weekly get together was a good way to exercise parts of my brain that my full-time jobs did not.  It wasn’t lost on me how privileged I was to spend so much time literally being paid to hang out with my own father.  When I look at my career so far, I can trace my success to 3 people.  Dad is at the top of that list.</p>
@@ -49,6 +49,8 @@ const CodePage = () => (
           <p>I’ve given up on shipping an installable Python module.  PF_RING dropped their repo for the version of Ubuntu we were using to build on Travis, and I don’t have the time or interest to keep the build running.  But I do want to share the code.</p>
 
           <p><a href="https://github.com/protectus/pfring-to-mongo">Here's the code.</a></p>
+
+          <p>The code itself is probably not very interesting unless you're into parsing network traffic or aggregating it into Mongo. There are some instructions for getting a dev build running, if you're really keen.  This post isn't really about that.</p>
 
           <br></br>
           <p>
@@ -116,7 +118,7 @@ https://github.com/protectus/pfring-to-mongo/blob/821b42c5a8c68b0f2ca4b50773f391
 
           <p><strong>More important yet</strong> was the concept working with Dad gave me that wearing lots of hats is fun.  If you're reading this because you're wondering if I'd be a good fit at your company, just know that I will probably not be happy doing only one kind of work.  With Dad, I:
           <ul>
-            <li>Slung Code</li>
+            <li>Slung Code in Python, Cython, JS and Bash</li>
             <li>Administered a Xen VM farm</li>
             <li>Designed a product UI</li>
             <li>Obtained my GPEN certification and performed pen testing against clients (because we were a security company)</li>
@@ -130,7 +132,9 @@ https://github.com/protectus/pfring-to-mongo/blob/821b42c5a8c68b0f2ca4b50773f391
           <p><strong>Even more important yet</strong> were the non-work things Dad taught me.  But that's a little out of scope today.</p>
 
           <h2>I guess that’s all</h2>
-          <p>When I was little, I wanted to be just like my dad. I’m still trying to be. It breaks my heart daily that my sons will not have the chance to know him.  I wish I could bring him back, but the best I can do is post some of his old code online.</p>
+          <p>I can feel the coherence of this post falling apart, so it must be time to wrap up.</p>
+          <p>When I was little, I wanted to be just like my dad. I’m still trying to be. It breaks my heart that my sons will not have the chance to know him.  I wish I could bring him back, but the best I can do is post some of his old code online.</p>
+          <p>I miss you, Dad.</p>
 
         </Col>
       </Row>
