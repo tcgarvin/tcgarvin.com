@@ -9,3 +9,6 @@ yarn-error.log
 
 # vim
 *.swp
+
+# Local secrets
+.env
