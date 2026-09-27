@@ -1,0 +1,28 @@
+---
+// Bootstrap 3 column spec for the header row; each breakpoint inherits from
+// the next smaller one, so pages can align the header with their content column.
+export interface Props {
+  linkHome?: boolean;
+  xs?: number;
+  xsOffset?: number;
+  md?: number;
+  mdOffset?: number;
+  lg?: number;
+  lgOffset?: number;
+}
+
+const { linkHome = true, xs = 12, xsOffset = 0 } = Astro.props;
+const md = Astro.props.md ?? xs;
+const mdOffset = Astro.props.mdOffset ?? xsOffset;
+const lg = Astro.props.lg ?? md;
+const lgOffset = Astro.props.lgOffset ?? mdOffset;
+const colClass = `col-lg-${lg} col-lg-offset-${lgOffset} col-md-${md} col-md-offset-${mdOffset} col-xs-${xs} col-xs-offset-${xsOffset}`;
+---
+
+<div class="body-header">
+  <div class="container">
+    <div class="row">
+      <div class={colClass}>{linkHome && <a href="/">tcgarvin.com</a>}</div>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,11 @@
-# Project dependencies
-.cache
+# Dependencies
 node_modules
-yarn-error.log
 
-# Build directory
-/public
+# Build output
+dist/
+.astro/
+
 .DS_Store
-
-# vim
 *.swp
 
 # Local secrets

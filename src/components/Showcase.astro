@@ -1,0 +1,29 @@
+---
+export interface Props {
+  title: string;
+  imageUrl: string;
+  link?: string;
+}
+
+const { title, imageUrl, link } = Astro.props;
+---
+
+<div class="col-md-6 col-xs-12">
+  <div class="showcase">
+    {
+      link ? (
+        <a class="header clearfix" href={link}>
+          <img src={imageUrl} alt="" />
+          <div class="header-text">{title} </div>
+        </a>
+      ) : (
+        <div class="header clearfix">
+          <img src={imageUrl} alt="" />
+          {/* No whitespace between title and span: it would render as an extra space. */}
+          <div class="header-text">{title}<span class="small"> (No Link)</span></div>
+        </div>
+      )
+    }
+    <slot />
+  </div>
+</div>
