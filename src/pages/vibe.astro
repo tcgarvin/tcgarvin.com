@@ -1,0 +1,255 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { eras } from "../data/vibe";
+---
+
+<Layout pageTitle="Vibe-Coded" noindex>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Vibe-Coded</h2>
+        <p>Every time a new model comes out, I start something new, or drag an old project forward, to see what's changed. These are the projects where Claude did most of the typing, in the order the models arrived.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="top-thing">
+    <div class="container">
+      {
+        eras.map((era) => (
+          <section class="row era" id={era.id}>
+            <div class="col-md-3 col-xs-12 era-label">
+              <div class="era-pin">
+                <h3 class="era-model">{era.model}</h3>
+                <div class="era-dates">{era.dates}</div>
+                <p class="era-note">{era.note}</p>
+              </div>
+            </div>
+            <div class="col-md-9 col-xs-12">
+              {era.projects.map((project) => (
+                <article class="vibe-card">
+                  <div class="vibe-shot">
+                    {project.image ? (
+                      <img src={project.image} alt={project.imageAlt ?? ""} loading="lazy" />
+                    ) : (
+                      <div class="vibe-shot-empty">Screenshot coming</div>
+                    )}
+                  </div>
+                  <div class="vibe-body">
+                    <div class="vibe-meta">
+                      <span class="vibe-model">{project.model}</span>
+                      <span>{project.dates}</span>
+                    </div>
+                    <h4 class="vibe-title">{project.title}</h4>
+                    <p>{project.what}</p>
+                    <p class="vibe-why">Why I made it: {project.why}</p>
+                    <div class="vibe-links">
+                      {project.links.map((link) => <a href={link.href}>{link.label}</a>)}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /*
+    Flex instead of Bootstrap's floats so the label column stretches to the full
+    height of its era, giving the sticky label room to travel.
+  */
+  .era {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    border-top: 1px solid #2e2e35;
+  }
+
+  .era::before,
+  .era::after {
+    display: none;
+  }
+
+  .era-pin {
+    position: sticky;
+    top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .era-model {
+    margin: 0 0 4px;
+    font-size: 26px;
+    color: #fff;
+  }
+
+  .era-dates {
+    font-family: "Source Code Pro", Menlo, Monaco, Consolas, monospace;
+    font-size: 14px;
+    color: #33a0ff;
+  }
+
+  .era-note {
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #8f979b;
+  }
+
+  .vibe-card {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 40px;
+    padding: 18px;
+    background: #24242a;
+    border: 1px solid #2e2e35;
+    border-radius: 4px;
+  }
+
+  .vibe-shot {
+    flex: 0 0 40%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 2px;
+    background: #1a1a1e;
+  }
+
+  .vibe-shot img {
+    display: block;
+    width: 100%;
+    height: 112%;
+    object-fit: cover;
+  }
+
+  .vibe-shot-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-family: "Source Code Pro", Menlo, Monaco, Consolas, monospace;
+    font-size: 13px;
+    color: #55595e;
+  }
+
+  .vibe-body {
+    min-width: 0;
+  }
+
+  .vibe-body p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .vibe-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    font-family: "Source Code Pro", Menlo, Monaco, Consolas, monospace;
+    font-size: 13px;
+    color: #8f979b;
+  }
+
+  .vibe-model {
+    color: #33a0ff;
+  }
+
+  .vibe-title {
+    margin: 6px 0 10px;
+    font-size: 23px;
+    color: #fff;
+  }
+
+  .vibe-why {
+    font-style: italic;
+    color: #8f979b;
+  }
+
+  .vibe-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 991px) {
+    /* Stacked: the whole label column becomes a bar pinned to the top of the screen. */
+    .era-label {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      margin-bottom: 16px;
+      background: #1e1e23;
+    }
+
+    .era-pin {
+      position: static;
+      padding: 10px 0;
+    }
+
+    .era-model {
+      display: inline;
+      margin-right: 12px;
+      font-size: 22px;
+    }
+
+    .era-dates {
+      display: inline;
+    }
+
+    .era-note {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .vibe-card {
+      flex-direction: column;
+    }
+  }
+
+  /*
+    The motion is tied to scroll position rather than triggered by it, so the page
+    never pauses or takes over scrolling: cards settle forward as they enter the
+    viewport, and screenshots drift a little slower than the page.
+  */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .vibe-card {
+        animation: card-arrive linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 35%;
+      }
+
+      .vibe-shot img {
+        animation: shot-drift linear both;
+        animation-timeline: view();
+        animation-range: cover;
+      }
+    }
+  }
+
+  @keyframes card-arrive {
+    from {
+      opacity: 0.35;
+      transform: translateY(40px) scale(0.95);
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  @keyframes shot-drift {
+    from {
+      transform: translateY(-10%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+</style>

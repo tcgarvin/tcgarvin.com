@@ -4,10 +4,12 @@ import Header, { type Props as HeaderProps } from "../components/Header.astro";
 export interface Props {
   pageTitle: string;
   description?: string;
+  // Keeps unfinished pages out of search results until they're linked from the site.
+  noindex?: boolean;
   header?: HeaderProps;
 }
 
-const { pageTitle, description, header = {} } = Astro.props;
+const { pageTitle, description, noindex = false, header = {} } = Astro.props;
 const iconSizes = [48, 72, 96, 144, 192, 256, 384, 512];
 ---
 
@@ -17,7 +19,7 @@ const iconSizes = [48, 72, 96, 144, 192, 256, 384, 512];
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{pageTitle} - tcgarvin.com</title>
-    {description && <meta name="description" content={description} />}
+    {description && <meta name="description" content={description} />}{noindex && <meta name="robots" content="noindex" />}
     {/*
       Frozen compiled output of the original Gatsby build (Bootstrap 3.3.7 via
       bootstrap-styl, plus the site's own styles). Kept verbatim so the design

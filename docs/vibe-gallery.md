@@ -1,0 +1,107 @@
+# Vibe-coded gallery
+
+A new page on tcgarvin.com for projects where Claude was clearly the primary tool. The story it
+tells: I keep trying new things as new models come out, so cards are grouped and ordered by the
+model that did most of the work.
+
+## Decisions
+
+- **Counts as vibe-coded:** Claude was clearly the primary tool.
+- **Main layout:** vertical "model eras" timeline, a sticky model label per era, cards within it.
+- **Peter's Games:** presented as an arcade shelf (its own section or page), since they're all
+  arcade games.
+- **Design:** stay close to the existing site (breadcrumb header, Montserrat, dark palette), built
+  with Layout.astro. Subtle scroll-linked card animation (CSS `animation-timeline: view()`), never
+  scroll-jacking. Page: `src/pages/vibe.astro`, data: `src/data/vibe.ts`.
+  Preview: https://claude.ai/artifact/LmTgMMw1ZTSuaGr37VPFwJ
+- **Each card:** what it is, why I made it, primary model, screenshots, GitHub link, and a live
+  link wherever possible (Netlify under tcgarvin.com, Claude artifact, Vercel, etc.).
+
+## Model timeline (from `Co-Authored-By` trailers)
+
+| Model | First → last seen | Projects |
+|---|---|---|
+| Claude (unversioned) | 2025-02 → 2025-11 | peter-games, project-status, generals, spacesim2 |
+| Opus 4.5 / Sonnet 4.5 | 2025-12 → 2026-01 | spacesim2, bobgame, generals |
+| Opus 4.6 | 2026-02 | rl-fighter |
+| Sonnet 4.6 | 2026-03 → 2026-06 | generals, peter-games, spacesim2, hex-general |
+| Opus 4.8 | 2026-06 → 2026-07 | hex-general, spacesim2 |
+| Fable 5 | 2026-06 → 2026-09 | hex-general, spacesim2 |
+| Fable 5.1 | 2026-09 → 2026-10 | spacesim2, bobgame, 18bby, crew, q4ck/synth |
+| Opus 5.5 | 2026-09 → now | crew, 18bby |
+
+## Projects
+
+Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshots, repo, live link.
+
+| Project | Model era | Repo | Live? | Blurb | Motivation | Screens | Live link | On page |
+|---|---|---|---|---|---|---|---|---|
+| peter-games (arcade shelf) | Claude → Sonnet 4.6 | tcgarvin/peter-games | web ones: spacewar-web, dreadnoughts, superbuild | [ ] | [ ] | [ ] | [ ] | [ ] |
+| project-status | Claude | tcgarvin/project-status | needs OpenAI key | [ ] | [ ] | [ ] | [ ] | [ ] |
+| generals | Claude → Sonnet 4.6 | local only | replay viewer? | [ ] | [ ] | [ ] | [ ] | [ ] |
+| game_nov_29 (QB sim) | ? (no git) | local only | pygame | [ ] | [ ] | [ ] | [ ] | [ ] |
+| grid | ? | local only | needs LLM keys | [ ] | [ ] | [ ] | [ ] | [ ] |
+| bobgame | Opus 4.5 → Fable 5.1 | tcgarvin/bobgame | jev-npc.tcgarvin.com | [ ] | [ ] | [ ] | [ ] | [ ] |
+| rl-fighter | Opus 4.6 | tcgarvin/rl-fighter | pygame viewer | [ ] | [ ] | [ ] | [ ] | [ ] |
+| hex-general | Opus 4.8 → Fable 5 | tcgarvin/hex-general | Vercel | [ ] | [ ] | [ ] | [ ] | [ ] |
+| spacesim2 | Claude → Fable 5.1 | tcgarvin/spacesim2 | ? | [ ] | [ ] | [ ] | [ ] | [ ] |
+| akron-marathon | ? | local only | static page | [ ] | [ ] | [ ] | [ ] | [ ] |
+| 18bby | Fable 5.1 / Opus 5.5 | local only | Vercel | [ ] | [ ] | [ ] | [ ] | [ ] |
+| crew | Opus 5.5 | tcgarvin/crew | Vercel | [ ] | [ ] | [ ] | [ ] | [ ] |
+| q4ck (synth droid voices) | Fable 5.1 | local only | web playground | [ ] | [ ] | [ ] | [ ] | [ ] |
+
+Later: fascar.
+
+Notes:
+- peter-games: artillery, dreadnoughts, pirates, platformer, racing, superbuild aren't committed yet
+  (GitHub links 404 until pushed). Web-playable: spacewar-web, dreadnoughts, superbuild
+  (superbuild needs PeerJS's public signalling server).
+
+## Prototypes (private artifacts)
+
+- A, eras, light notebook: https://claude.ai/artifact/J3857jo3gUGToNfwahaK75
+- B, eras, dark split-screen: https://claude.ai/artifact/J8iK2xwgTz3famdbEiqjQj
+- C, Peter's Arcade: https://claude.ai/artifact/1gFQjUAac5woNrqbdKnxCe
+
+## Plan
+
+The page ships at /vibe with no links to it and a `noindex` tag. Each step below gets deployed as
+it's done. Launch is adding the link.
+
+### Phase 1: Foundation
+- [x] Prototype designs; Tim picked "close to the existing site" + subtle scroll animation.
+- [x] Build `src/pages/vibe.astro` with data in `src/data/vibe.ts`.
+- [x] Ship unlinked and noindexed.
+
+### Phase 2: One project at a time
+For each project, in order:
+1. Claude drafts "what it is" from the code and confirms the model from git history.
+2. Tim answers a question or two about motivation; Claude turns that into the "why" line.
+3. Screenshots: Claude runs the project and captures them (or Tim supplies them).
+4. Live link: pick hosting (static on tcgarvin.com under `/vibe/<slug>/`, an existing Vercel
+   deploy, a Claude artifact, or none), and get it working.
+5. Repo: push to GitHub if it's local-only and Tim wants it public, or show no repo link.
+6. Update `src/data/vibe.ts`, deploy, tick the row in the table above.
+
+Suggested order (quick wins with live demos first):
+1. [ ] Akron Marathon (static page, host on tcgarvin.com)
+2. [ ] Bob's World (already live)
+3. [ ] Crew, 18BBY, Hex General (check their Vercel deploys)
+4. [ ] Droid Voices (web playground)
+5. [ ] SpaceSim2
+6. [ ] Generals (replay viewer)
+7. [ ] RL Fighter (video or GIF of a trained match)
+8. [ ] Project Status
+9. [ ] Grid (not on the page yet)
+10. [ ] Quarterback Simulator (game_nov_29, not on the page yet)
+
+### Phase 3: Peter's Arcade
+- [ ] Decide the look (match the site, or keep the full arcade style as an exception).
+- [ ] Commit the six uncommitted games and push.
+- [ ] Host the three web games (spacewar-web, dreadnoughts, superbuild) on tcgarvin.com.
+- [ ] Capture screenshots or GIFs of the pygame games.
+- [ ] Build the page and link it from the Peter's Games card.
+
+### Phase 4: Launch
+- [ ] Final pass on the intro copy and era notes.
+- [ ] Remove `noindex`, link from the home page and/or the code page, deploy.
