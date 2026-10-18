@@ -157,7 +157,10 @@ export const eras: VibeEra[] = [
         what: "Procedural space-opera droid speech. Describe the intent and emotion, or type a line and a small LLM picks them, and get chirps, whistles and trills with no samples. The same request always makes the same sound, with timing a robot can move to.",
         image: "/images/vibe/droid-voices.webp",
         imageAlt: "Lines like \"Look what I found!\" and \"Careful, I'm picking up something odd.\" with play buttons and colored timelines of the chirps and whistles each one became",
-        links: [{ label: "Listen", href: "/vibe/droid-voices/" }],
+        links: [
+          { label: "Listen", href: "/vibe/droid-voices/" },
+          { label: "GitHub", href: "https://github.com/tcgarvin/q4ck" },
+        ],
       },
     ],
   },
