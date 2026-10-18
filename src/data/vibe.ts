@@ -67,9 +67,9 @@ export const eras: VibeEra[] = [
     projects: [
       {
         title: "Bob's World",
-        model: "Opus 4.5 → Fable 5.1",
-        dates: "Jan – Sep 2026",
-        why: "My son wanted a giant game, and a giant game needs a lot of NPCs. I wondered whether they could run themselves, like the LLM town simulations I'd seen, with the settlers talking to each other. It started as an experiment in how far Claude could get. When Jev came out months later, this was the obvious place to try it. I never tuned it enough to work well, but Jev was fast, smart and cheap enough to run NPCs in real time, and that was pretty cool.",
+        model: "Opus 4.5, then Fable 5.1 + Jev",
+        dates: "Jan 2026, then Sep 2026",
+        why: "My son wanted a giant game, and a giant game needs a lot of NPCs. I wondered whether they could run themselves, like the LLM town simulations I'd seen, with the settlers talking to each other. It started as an experiment in how far Claude could get. When Jev came out in September 2026, this was the obvious place to try it. I never tuned it enough to work well, but Jev was fast, smart and cheap enough to run NPCs in real time, and that was pretty cool.",
         what: "Six LLM settlers and one wolf on a procedurally generated island. Each settler has a daily planner, a second planner that runs all day and handles speech, and Jev for moment-to-moment activity.",
         image: "/images/vibe/bobgame.webp",
         imageAlt: "Bob's World viewer with the settler Esme selected, showing her planner's thoughts and her plan for the day",
