@@ -41,8 +41,8 @@ import { eras } from "../data/vibe";
                       <span>{project.dates}</span>
                     </div>
                     <h4 class="vibe-title">{project.title}</h4>
-                    <p>{project.what}</p>
-                    <p class="vibe-why">Why I made it: {project.why}</p>
+                    {project.why ? <p class="vibe-why">{project.why}</p> : <p class="vibe-why-missing">Story coming.</p>}
+                    <p class="vibe-what">{project.what}</p>
                     <div class="vibe-links">
                       {project.links.map((link) => <a href={link.href}>{link.label}</a>)}
                     </div>
@@ -111,6 +111,7 @@ import { eras } from "../data/vibe";
 
   .vibe-shot {
     flex: 0 0 40%;
+    align-self: flex-start;
     aspect-ratio: 4 / 3;
     overflow: hidden;
     border-radius: 2px;
@@ -162,8 +163,14 @@ import { eras } from "../data/vibe";
     color: #fff;
   }
 
-  .vibe-why {
+  .vibe-why-missing {
     font-style: italic;
+    color: #8f979b;
+  }
+
+  .vibe-body .vibe-what {
+    font-size: 14px;
+    line-height: 1.55;
     color: #8f979b;
   }
 

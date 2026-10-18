@@ -10,9 +10,9 @@ export interface VibeProject {
   title: string;
   model: string;
   dates: string;
+  // The story leads the card; projects without one yet show a placeholder.
+  why?: string;
   what: string;
-  // Draft placeholders until Tim writes his own.
-  why: string;
   image?: string;
   imageAlt?: string;
   links: VibeLink[];
@@ -38,7 +38,6 @@ export const eras: VibeEra[] = [
         model: "Claude",
         dates: "Feb 2025 – Mar 2026",
         what: "Snake for three, Flappy Bird for three, Spacewar, Orcs Must Die 2D, pirates, artillery and a racing game. Peter designs them by talking to Claude.",
-        why: "DRAFT",
         links: [
           { label: "Open the arcade", href: "#" },
           { label: "GitHub", href: "https://github.com/tcgarvin/peter-games" },
@@ -49,7 +48,6 @@ export const eras: VibeEra[] = [
         model: "Claude",
         dates: "May 2025",
         what: "A voice-first project manager. Talk to it through OpenAI's Realtime API and it drafts timeline changes for you to approve.",
-        why: "DRAFT",
         links: [{ label: "GitHub", href: "https://github.com/tcgarvin/project-status" }],
       },
       {
@@ -57,7 +55,6 @@ export const eras: VibeEra[] = [
         model: "Claude → Sonnet 4.6",
         dates: "Jun 2025 – Mar 2026",
         what: "A WWII-style hex wargame for studying AI command hierarchies, with generals, colonels and captains as agents and full battle replays.",
-        why: "DRAFT",
         links: [{ label: "Watch a replay", href: "#" }],
       },
     ],
@@ -73,7 +70,6 @@ export const eras: VibeEra[] = [
         model: "Opus 4.5 → Fable 5.1",
         dates: "Jan – Sep 2026",
         what: "Six LLM settlers and one wolf on a procedurally generated island. You can watch them go about their day.",
-        why: "DRAFT",
         image: "/images/vibe/bobgame.webp",
         imageAlt: "Bob's World procedural island map",
         links: [
@@ -94,7 +90,6 @@ export const eras: VibeEra[] = [
         model: "Opus 4.6",
         dates: "Feb 2026",
         what: "2v2 space dogfights in a batched NumPy sim, with ships trained by PPO self-play.",
-        why: "DRAFT",
         links: [{ label: "GitHub", href: "https://github.com/tcgarvin/rl-fighter" }],
       },
     ],
@@ -110,7 +105,6 @@ export const eras: VibeEra[] = [
         model: "Opus 4.8 → Fable 5",
         dates: "Jun – Jul 2026",
         what: "A turn-based operational wargame where both sides plan their orders, then everything executes at once.",
-        why: "DRAFT",
         image: "/images/vibe/hex-general.webp",
         imageAlt: "Hex General concept art of a hex battlefield",
         links: [
@@ -131,7 +125,6 @@ export const eras: VibeEra[] = [
         model: "Claude → Fable 5.1",
         dates: "Mar 2025 – Sep 2026",
         what: "An interplanetary trade economy: planets with local markets, actors who produce and consume, and ships hauling goods along star lanes.",
-        why: "DRAFT",
         image: "/images/vibe/spacesim2.webp",
         imageAlt: "SpaceSim2 galaxy view with star lanes",
         links: [{ label: "GitHub", href: "https://github.com/tcgarvin/spacesim2" }],
@@ -141,7 +134,6 @@ export const eras: VibeEra[] = [
         model: "Fable 5.1 / Opus 5.5",
         dates: "Sep – Oct 2026",
         what: "An 18xx-style game of hyperspace commerce, set 18 years before the Battle of Yavin. Rules engine, bot playtests and a browser UI.",
-        why: "DRAFT",
         image: "/images/vibe/18bby.webp",
         imageAlt: "18BBY game board showing a hyperspace map",
         links: [{ label: "Play", href: "#" }],
@@ -151,7 +143,6 @@ export const eras: VibeEra[] = [
         model: "Fable 5.1",
         dates: "Sep 2026",
         what: "Procedural space-opera droid speech. Describe the intent and emotion and get chirps, whistles and trills, with no samples.",
-        why: "DRAFT",
         links: [{ label: "Listen", href: "#" }],
       },
     ],
@@ -167,7 +158,6 @@ export const eras: VibeEra[] = [
         model: "Opus 5.5",
         dates: "Sep – Oct 2026",
         what: "A small freighter with an autonomous crew. Systems break and get fixed, cargo runs between six ports, and off watch the crew play cards and hold grudges.",
-        why: "DRAFT",
         links: [
           { label: "Play", href: "#" },
           { label: "GitHub", href: "https://github.com/tcgarvin/crew" },
@@ -181,7 +171,10 @@ export const eras: VibeEra[] = [
         why: "During the relay we could see our place in our own group, but not where we sat in the whole pack. I wanted to see that bell curve, then watch it move through the race, and it turned out to be easy to put a map under it. I had the idea just before my leg, and it was done before our last runner crossed the line, about an hour and a half later.",
         image: "/images/vibe/akron-marathon.webp",
         imageAlt: "Akron Marathon replay at 10:30, with the field strung out along the course and our relay team highlighted",
-        links: [{ label: "Watch the race", href: "/vibe/akron-marathon/" }],
+        links: [
+          { label: "Watch the race", href: "/vibe/akron-marathon/" },
+          { label: "GitHub", href: "https://github.com/tcgarvin/akron-marathon" },
+        ],
       },
     ],
   },
