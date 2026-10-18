@@ -50,7 +50,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 | akron-marathon | Opus 5.5 | tcgarvin/akron-marathon (results kept out of git) | /vibe/akron-marathon/ (names and ages removed) | [x] | [x] | [x] | [x] | [x] |
 | 18bby | Fable 5.1 → Opus 5.5 | tcgarvin/18bby | 18bby.tcgarvin.com | [x] | [x] | [x] | [x] | [x] |
 | crew | Opus 5.5 | tcgarvin/crew | crew-neon-omega.vercel.app | [x] | [x] | [x] | [x] | [x] |
-| q4ck (synth droid voices) | Fable 5.1 | local only | web playground | [ ] | [ ] | [ ] | [ ] | [ ] |
+| q4ck (synth droid voices) | Fable 5.1 | local only (synth has uncommitted text-to-voice work) | /vibe/droid-voices/ (audition sheet) | [x] | [x] | [x] | [x] | [ ] |
 
 Later: fascar.
 
@@ -58,6 +58,9 @@ Notes:
 - akron-marathon: the public copy is built with `python tools/build_runners.py --public <path>`
   in the akron-marathon repo, then copied with index.html and courses.json to
   `public/vibe/akron-marathon/`. Runners' names and ages are removed; relay team names stay.
+- droid voices: `uv run --all-extras python scripts/build_audition.py OUT.html` in q4ck/synth (makes
+  a few OpenRouter calls), then the scratchpad `split_audition.py` turns its inline WAVs into
+  `clips/NNN.mp3` (15 MB → 2.5 MB) for `public/vibe/droid-voices/`.
 - peter-games: artillery, dreadnoughts, pirates, platformer, racing, superbuild aren't committed yet
   (GitHub links 404 until pushed). Web-playable: spacewar-web, dreadnoughts, superbuild
   (superbuild needs PeerJS's public signalling server).
