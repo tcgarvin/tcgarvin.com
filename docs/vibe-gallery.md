@@ -41,7 +41,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 | generals | Claude → Sonnet 4.6 | local only | replay viewer? | [ ] | [ ] | [ ] | [ ] | [ ] |
 | game_nov_29 (QB sim) | ? (no git) | local only | pygame | [ ] | [ ] | [ ] | [ ] | [ ] |
 | grid | ? | local only | needs LLM keys | [ ] | [ ] | [ ] | [ ] | [ ] |
-| bobgame | Opus 4.5 → Fable 5.1 | tcgarvin/bobgame | jev-npc.tcgarvin.com | [ ] | [ ] | [ ] | [ ] | [ ] |
+| bobgame | Opus 4.5 → Fable 5.1 | tcgarvin/bobgame | jev-npc.tcgarvin.com | [x] | [x] | [x] | [x] | [x] |
 | rl-fighter | Opus 4.6 | tcgarvin/rl-fighter | pygame viewer | [ ] | [ ] | [ ] | [ ] | [ ] |
 | hex-general | Opus 4.8 → Fable 5 | tcgarvin/hex-general | Vercel | [ ] | [ ] | [ ] | [ ] | [ ] |
 | spacesim2 | Claude → Fable 5.1 | tcgarvin/spacesim2 | ? | [ ] | [ ] | [ ] | [ ] | [ ] |
@@ -88,7 +88,7 @@ For each project, in order:
 
 Suggested order (quick wins with live demos first):
 1. [x] Akron Marathon (static page, host on tcgarvin.com)
-2. [ ] Bob's World (already live)
+2. [x] Bob's World (already live)
 3. [ ] Crew, 18BBY, Hex General (check their Vercel deploys)
 4. [ ] Droid Voices (web playground)
 5. [ ] SpaceSim2
