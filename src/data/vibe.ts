@@ -49,13 +49,6 @@ export const eras: VibeEra[] = [
         ],
       },
       {
-        title: "Project Status",
-        model: "Claude",
-        dates: "May 2025",
-        what: "A voice-first project manager. Talk to it through OpenAI's Realtime API and it drafts timeline changes for you to approve.",
-        links: [{ label: "GitHub", href: "https://github.com/tcgarvin/project-status" }],
-      },
-      {
         title: "Generals",
         model: "Claude, then Opus 4.5 and Sonnet 4.6",
         dates: "Jun 2025 – Mar 2026",

@@ -40,7 +40,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 | Project | Model era | Repo | Live? | Blurb | Motivation | Screens | Live link | On page |
 |---|---|---|---|---|---|---|---|---|
 | peter-games (arcade shelf) | Claude → Sonnet 4.6 | tcgarvin/peter-games | web ones: spacewar-web, dreadnoughts, superbuild | [ ] | [ ] | [ ] | [ ] | [ ] |
-| project-status | Claude | tcgarvin/project-status | needs OpenAI key | [ ] | [ ] | [ ] | [ ] | [ ] |
+| project-status | Claude | tcgarvin/project-status | skipped (Tim: didn't go far; off the page) | - | - | - | - | - |
 | generals | Claude → Opus 4.5 / Sonnet 4.6 | tcgarvin/generals | none (failed; repo link only) | [x] | [x] | [x] | [x] | [x] |
 | game_nov_29 (QB sim) | ? (no git) | local only | pygame | [ ] | [ ] | [ ] | [ ] | [ ] |
 | grid | ? | local only | needs LLM keys | [ ] | [ ] | [ ] | [ ] | [ ] |
@@ -101,7 +101,7 @@ Suggested order (quick wins with live demos first):
 6. [x] Generals (marked failed; repo link only)
 7. [x] RL Fighter (screenshot is random actions: local checkpoints predate the current obs size
    and the training box was unreachable; swap in a trained match later)
-8. [ ] Project Status
+8. [x] Project Status (skipped by Tim, 2026-10-18; removed from the page)
 9. [ ] Grid (not on the page yet)
 10. [ ] Quarterback Simulator (game_nov_29, not on the page yet)
 
