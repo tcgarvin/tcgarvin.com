@@ -42,7 +42,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 | peter-games (arcade shelf) | Claude → Sonnet 4.6 | tcgarvin/peter-games | web ones: spacewar-web, dreadnoughts, superbuild | [ ] | [ ] | [ ] | [ ] | [ ] |
 | project-status | Claude | tcgarvin/project-status | skipped (Tim: didn't go far; off the page) | - | - | - | - | - |
 | generals | Claude → Opus 4.5 / Sonnet 4.6 | tcgarvin/generals | none (failed; repo link only) | [x] | [x] | [x] | [x] | [x] |
-| game_nov_29 (QB sim) | ? (no git) | local only | pygame | [ ] | [ ] | [ ] | [ ] | [ ] |
+| game_nov_29 (QB sim) | Claude | local only | moves to Peter's Arcade (guest game) | - | - | - | - | - |
 | grid | ? | local only | skipped (Tim, 2026-10-18) | - | - | - | - | - |
 | bobgame | Opus 4.5 → Fable 5.1 | tcgarvin/bobgame | jev-npc.tcgarvin.com | [x] | [x] | [x] | [x] | [x] |
 | rl-fighter | Opus 4.6 | tcgarvin/rl-fighter | none for now; later as one of Peter's games | [x] | [x] | [x] | [x] | [x] |
@@ -103,13 +103,15 @@ Suggested order (quick wins with live demos first):
    and the training box was unreachable; swap in a trained match later)
 8. [x] Project Status (skipped by Tim, 2026-10-18; removed from the page)
 9. [x] Grid (skipped by Tim, 2026-10-18; never on the page)
-10. [ ] Quarterback Simulator (game_nov_29, not on the page yet)
+10. [x] Quarterback Simulator (folded into Peter's Arcade, see Phase 3)
 
 ### Phase 3: Peter's Arcade
 - [ ] Decide the look (match the site, or keep the full arcade style as an exception).
 - [ ] Commit the six uncommitted games and push.
 - [ ] Host the three web games (spacewar-web, dreadnoughts, superbuild) on tcgarvin.com.
 - [ ] Capture screenshots or GIFs of the pygame games.
+- [ ] Add Quarterback Simulator (`~/code/game_nov_29`, Nov 2025) as a guest game: a kid who had
+  never used AI before made it with Tim in about one prompt.
 - [ ] Build the page and link it from the Peter's Games card.
 
 ### Phase 4: Launch
