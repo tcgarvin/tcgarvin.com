@@ -158,11 +158,11 @@ export const eras: VibeEra[] = [
         title: "Crew",
         model: "Opus 5.5",
         dates: "Sep – Oct 2026",
-        what: "A small freighter with an autonomous crew. Systems break and get fixed, cargo runs between six ports, and off watch the crew play cards and hold grudges.",
-        links: [
-          { label: "Play", href: "#" },
-          { label: "GitHub", href: "https://github.com/tcgarvin/crew" },
-        ],
+        why: "Opus 5.5 was doing so well that I started thinking about games I'd written off as too ambitious to vibe-code. One I've always wanted puts you on the throne, making one decision at a time and watching it ripple through the world. Reigns does that beautifully, but under its storytelling the simulation is just four sliders. Crew keeps Reigns' two-choice cards and puts a much deeper simulation underneath. Opus wrote the code, and a very small LLM narrates, making up the story as it goes. It doesn't work very well yet, but it's interesting to watch sometimes.",
+        what: "You're the captain of a small freighter. The crew run themselves: systems break and get fixed, cargo moves between six ports, and off watch the crew play cards and hold grudges. People bring you decisions, and you answer each with one of two choices.",
+        image: "/images/vibe/crew.webp",
+        imageAlt: "A dispatcher offers a freight job on a decision card, with Take the job and Pass on it as the two choices, over a dimmed plan of the ship",
+        links: [{ label: "Play", href: "https://crew-neon-omega.vercel.app/" }],
       },
       {
         title: "Akron Marathon Replay",
