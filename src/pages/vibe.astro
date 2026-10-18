@@ -39,6 +39,11 @@ import { eras } from "../data/vibe";
                     <div class="vibe-meta">
                       <span class="vibe-model">{project.model}</span>
                       <span>{project.dates}</span>
+                      {project.finished ? (
+                        <span class="vibe-status vibe-finished">Finished</span>
+                      ) : (
+                        <span class="vibe-status">Unfinished</span>
+                      )}
                     </div>
                     <h4 class="vibe-title">{project.title}</h4>
                     {project.why ? <p class="vibe-why">{project.why}</p> : <p class="vibe-why-missing">Story coming.</p>}
@@ -155,6 +160,19 @@ import { eras } from "../data/vibe";
 
   .vibe-model {
     color: #33a0ff;
+  }
+
+  .vibe-status {
+    padding: 0 6px;
+    border: 1px solid #55595e;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #8f979b;
+  }
+
+  .vibe-finished {
+    border-color: #3f8f5e;
+    color: #6fcf97;
   }
 
   .vibe-title {

@@ -13,6 +13,9 @@ export interface VibeProject {
   // The story leads the card; projects without one yet show a placeholder.
   why?: string;
   what: string;
+  // Most of these are experiments; only the few that are done say so, so nobody clicks through
+  // expecting a polished game.
+  finished?: boolean;
   image?: string;
   imageAlt?: string;
   links: VibeLink[];
@@ -132,12 +135,13 @@ export const eras: VibeEra[] = [
       },
       {
         title: "18BBY",
-        model: "Fable 5.1 / Opus 5.5",
+        model: "Fable 5.1, then Opus 5.5",
         dates: "Sep – Oct 2026",
-        what: "An 18xx-style game of hyperspace commerce, set 18 years before the Battle of Yavin. Rules engine, bot playtests and a browser UI.",
+        why: "The curse of 18xx games is that there are so many versions, and playing one makes you want to make one. After a recent game I thought a Star Wars version would be cool, with hyperspace lanes instead of railroads, so we vibed it up quickly. Claude built the game and then playtested it with bots, though I'm not yet sure how well that worked. It's playable, but certainly not balanced, and probably not fun yet. I'd like to go back to it.",
+        what: "An 18xx-style game of hyperspace commerce, set 18 years before the Battle of Yavin. Corporations chart a shared hyperspace network and earn revenue by pairing the planets they can reach. Hotseat play in the browser.",
         image: "/images/vibe/18bby.webp",
         imageAlt: "18BBY game board showing a hyperspace map",
-        links: [{ label: "Play", href: "#" }],
+        links: [{ label: "Play", href: "https://18bby.vercel.app/" }],
       },
       {
         title: "Droid Voices",
@@ -170,6 +174,7 @@ export const eras: VibeEra[] = [
       {
         title: "Akron Marathon Replay",
         model: "Opus 5.5",
+        finished: true,
         dates: "Sep 2026",
         what: "Every runner in the 2026 Akron Marathon, half marathon and team relay, moving around the course on their chip split times. Scrub the race clock, watch the field spread out, and find a bib.",
         why: "During the relay we could see our place in our own group, but not where we sat in the whole pack. I wanted to see that bell curve, then watch it move through the race, and it turned out to be easy to put a map under it. I had the idea just before my leg, and it was done before our last runner crossed the line, about an hour and a half later.",

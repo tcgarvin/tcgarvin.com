@@ -16,6 +16,8 @@ model that did most of the work.
   Preview: https://claude.ai/artifact/LmTgMMw1ZTSuaGr37VPFwJ
 - **Each card:** what it is, why I made it, primary model, screenshots, GitHub link, and a live
   link wherever possible (Netlify under tcgarvin.com, Claude artifact, Vercel, etc.).
+- **Finished or unfinished:** every card is tagged, so nobody clicks through expecting a polished
+  game. Unfinished is the default; set `finished: true` only for the done ones (so far: Akron).
 
 ## Model timeline (from `Co-Authored-By` trailers)
 
@@ -46,7 +48,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 | hex-general | Opus 4.8 → Fable 5 | tcgarvin/hex-general | Vercel | [ ] | [ ] | [ ] | [ ] | [ ] |
 | spacesim2 | Claude → Fable 5.1 | tcgarvin/spacesim2 | ? | [ ] | [ ] | [ ] | [ ] | [ ] |
 | akron-marathon | Opus 5.5 | tcgarvin/akron-marathon (results kept out of git) | /vibe/akron-marathon/ (names and ages removed) | [x] | [x] | [x] | [x] | [x] |
-| 18bby | Fable 5.1 / Opus 5.5 | local only | Vercel | [ ] | [ ] | [ ] | [ ] | [ ] |
+| 18bby | Fable 5.1 → Opus 5.5 | local only (no link yet) | 18bby.vercel.app (18bby.tcgarvin.com has no DNS record) | [x] | [x] | [x] | [x] | [ ] |
 | crew | Opus 5.5 | tcgarvin/crew | crew-neon-omega.vercel.app | [x] | [x] | [x] | [x] | [x] |
 | q4ck (synth droid voices) | Fable 5.1 | local only | web playground | [ ] | [ ] | [ ] | [ ] | [ ] |
 
