@@ -162,7 +162,10 @@ export const eras: VibeEra[] = [
         what: "You're the captain of a small freighter. The crew run themselves: systems break and get fixed, cargo moves between six ports, and off watch the crew play cards and hold grudges. People bring you decisions, and you answer each with one of two choices.",
         image: "/images/vibe/crew.webp",
         imageAlt: "A dispatcher offers a freight job on a decision card, with Take the job and Pass on it as the two choices, over a dimmed plan of the ship",
-        links: [{ label: "Play", href: "https://crew-neon-omega.vercel.app/" }],
+        links: [
+          { label: "Play", href: "https://crew-neon-omega.vercel.app/" },
+          { label: "GitHub", href: "https://github.com/tcgarvin/crew" },
+        ],
       },
       {
         title: "Akron Marathon Replay",

@@ -47,7 +47,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 | spacesim2 | Claude → Fable 5.1 | tcgarvin/spacesim2 | ? | [ ] | [ ] | [ ] | [ ] | [ ] |
 | akron-marathon | Opus 5.5 | tcgarvin/akron-marathon (results kept out of git) | /vibe/akron-marathon/ (names and ages removed) | [x] | [x] | [x] | [x] | [x] |
 | 18bby | Fable 5.1 / Opus 5.5 | local only | Vercel | [ ] | [ ] | [ ] | [ ] | [ ] |
-| crew | Opus 5.5 | tcgarvin/crew (private, no link yet) | crew-neon-omega.vercel.app | [x] | [x] | [x] | [x] | [x] |
+| crew | Opus 5.5 | tcgarvin/crew | crew-neon-omega.vercel.app | [x] | [x] | [x] | [x] | [x] |
 | q4ck (synth droid voices) | Fable 5.1 | local only | web playground | [ ] | [ ] | [ ] | [ ] | [ ] |
 
 Later: fascar.
