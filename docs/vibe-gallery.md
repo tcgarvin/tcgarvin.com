@@ -45,7 +45,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 | game_nov_29 (QB sim) | ? (no git) | local only | pygame | [ ] | [ ] | [ ] | [ ] | [ ] |
 | grid | ? | local only | needs LLM keys | [ ] | [ ] | [ ] | [ ] | [ ] |
 | bobgame | Opus 4.5 → Fable 5.1 | tcgarvin/bobgame | jev-npc.tcgarvin.com | [x] | [x] | [x] | [x] | [x] |
-| rl-fighter | Opus 4.6 | tcgarvin/rl-fighter | pygame viewer | [ ] | [ ] | [ ] | [ ] | [ ] |
+| rl-fighter | Opus 4.6 | tcgarvin/rl-fighter | none for now; later as one of Peter's games | [x] | [x] | [x] | [x] | [x] |
 | hex-general | Opus 4.8 → Fable 5 | tcgarvin/hex-general | hex-general.vercel.app (Google sign-in) | [x] | [x] | [x] | [x] | [x] |
 | spacesim2 | Claude → Fable 5.1 | tcgarvin/spacesim2 | ? | [ ] | [ ] | [ ] | [ ] | [ ] |
 | akron-marathon | Opus 5.5 | tcgarvin/akron-marathon (results kept out of git) | /vibe/akron-marathon/ (names and ages removed) | [x] | [x] | [x] | [x] | [x] |
@@ -99,7 +99,8 @@ Suggested order (quick wins with live demos first):
 4. [x] Droid Voices (audition sheet at /vibe/droid-voices/)
 5. [ ] SpaceSim2 (deferred by Tim, 2026-10-18; come back later)
 6. [x] Generals (marked failed; repo link only)
-7. [ ] RL Fighter (video or GIF of a trained match)
+7. [x] RL Fighter (screenshot is random actions: local checkpoints predate the current obs size
+   and the training box was unreachable; swap in a trained match later)
 8. [ ] Project Status
 9. [ ] Grid (not on the page yet)
 10. [ ] Quarterback Simulator (game_nov_29, not on the page yet)
