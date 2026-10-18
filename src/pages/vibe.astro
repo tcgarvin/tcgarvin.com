@@ -49,7 +49,12 @@ import { eras } from "../data/vibe";
                     {project.why ? <p class="vibe-why">{project.why}</p> : <p class="vibe-why-missing">Story coming.</p>}
                     <p class="vibe-what">{project.what}</p>
                     <div class="vibe-links">
-                      {project.links.map((link) => <a href={link.href}>{link.label}</a>)}
+                      {project.links.map((link) => (
+                        <span>
+                          <a href={link.href}>{link.label}</a>
+                          {link.note && <span class="vibe-link-note">({link.note})</span>}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </article>
@@ -197,6 +202,12 @@ import { eras } from "../data/vibe";
     flex-wrap: wrap;
     gap: 6px 20px;
     font-size: 16px;
+  }
+
+  .vibe-link-note {
+    margin-left: 6px;
+    font-size: 13px;
+    color: #8f979b;
   }
 
   @media (max-width: 991px) {

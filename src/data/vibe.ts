@@ -4,6 +4,8 @@
 export interface VibeLink {
   label: string;
   href: string;
+  // A caveat shown after the link, for live versions that may not work for everyone.
+  note?: string;
 }
 
 export interface VibeProject {
@@ -112,7 +114,10 @@ export const eras: VibeEra[] = [
         what: "A turn-based hex wargame where both sides plan their orders, then everything executes at once. Painted terrain tiles, a computer opponent and a replay of every turn.",
         image: "/images/vibe/hex-general.webp",
         imageAlt: "A Hex General board: painted grass, hills and woods, blue and red infantry and tanks facing off across a road, with fog of war dimming the hexes out of sight",
-        links: [{ label: "Play (Google sign-in)", href: "https://hex-general.vercel.app/" }],
+        links: [
+          { label: "Try it", href: "https://hex-general.vercel.app/", note: "Google sign-in; may not let you in" },
+          { label: "GitHub", href: "https://github.com/tcgarvin/hex-general" },
+        ],
       },
     ],
   },
