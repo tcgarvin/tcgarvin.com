@@ -43,7 +43,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 | project-status | Claude | tcgarvin/project-status | skipped (Tim: didn't go far; off the page) | - | - | - | - | - |
 | generals | Claude → Opus 4.5 / Sonnet 4.6 | tcgarvin/generals | none (failed; repo link only) | [x] | [x] | [x] | [x] | [x] |
 | game_nov_29 (QB sim) | ? (no git) | local only | pygame | [ ] | [ ] | [ ] | [ ] | [ ] |
-| grid | ? | local only | needs LLM keys | [ ] | [ ] | [ ] | [ ] | [ ] |
+| grid | ? | local only | skipped (Tim, 2026-10-18) | - | - | - | - | - |
 | bobgame | Opus 4.5 → Fable 5.1 | tcgarvin/bobgame | jev-npc.tcgarvin.com | [x] | [x] | [x] | [x] | [x] |
 | rl-fighter | Opus 4.6 | tcgarvin/rl-fighter | none for now; later as one of Peter's games | [x] | [x] | [x] | [x] | [x] |
 | hex-general | Opus 4.8 → Fable 5 | tcgarvin/hex-general | hex-general.vercel.app (Google sign-in) | [x] | [x] | [x] | [x] | [x] |
@@ -102,7 +102,7 @@ Suggested order (quick wins with live demos first):
 7. [x] RL Fighter (screenshot is random actions: local checkpoints predate the current obs size
    and the training box was unreachable; swap in a trained match later)
 8. [x] Project Status (skipped by Tim, 2026-10-18; removed from the page)
-9. [ ] Grid (not on the page yet)
+9. [x] Grid (skipped by Tim, 2026-10-18; never on the page)
 10. [ ] Quarterback Simulator (game_nov_29, not on the page yet)
 
 ### Phase 3: Peter's Arcade
