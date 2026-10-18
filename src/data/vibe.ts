@@ -106,15 +106,13 @@ export const eras: VibeEra[] = [
     projects: [
       {
         title: "Hex General",
-        model: "Opus 4.8 → Fable 5",
+        model: "Opus 4.8, then Fable 5",
         dates: "Jun – Jul 2026",
-        what: "A turn-based operational wargame where both sides plan their orders, then everything executes at once.",
+        why: "Civil War General, itself built on Panzer General, was one of my favorite games as a kid. I wanted to see whether Claude could do more than write a game like that: could it also make the art, in a disciplined way? It started with Opus 4.8 and PixelLab, an image generator that specializes in pixel art. Then Fable 5 came out, and this is the project where things Opus couldn't work out on its own, Fable started working out. It built a pipeline that paints terrain tiles to match the concept art, checks them automatically and has me pick the winners. It's definitely unfinished, and I don't know if I'll go back to it.",
+        what: "A turn-based hex wargame where both sides plan their orders, then everything executes at once. Painted terrain tiles, a computer opponent and a replay of every turn.",
         image: "/images/vibe/hex-general.webp",
-        imageAlt: "Hex General concept art of a hex battlefield",
-        links: [
-          { label: "Play", href: "#" },
-          { label: "GitHub", href: "https://github.com/tcgarvin/hex-general" },
-        ],
+        imageAlt: "A Hex General board: painted grass, hills and woods, blue and red infantry and tanks facing off across a road, with fog of war dimming the hexes out of sight",
+        links: [{ label: "Play (Google sign-in)", href: "https://hex-general.vercel.app/" }],
       },
     ],
   },
