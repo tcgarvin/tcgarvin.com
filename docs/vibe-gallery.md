@@ -45,7 +45,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 | rl-fighter | Opus 4.6 | tcgarvin/rl-fighter | pygame viewer | [ ] | [ ] | [ ] | [ ] | [ ] |
 | hex-general | Opus 4.8 → Fable 5 | tcgarvin/hex-general | Vercel | [ ] | [ ] | [ ] | [ ] | [ ] |
 | spacesim2 | Claude → Fable 5.1 | tcgarvin/spacesim2 | ? | [ ] | [ ] | [ ] | [ ] | [ ] |
-| akron-marathon | ? | local only | static page | [ ] | [ ] | [ ] | [ ] | [ ] |
+| akron-marathon | Opus 5.5 | local only | /vibe/akron-marathon/ (names and ages removed) | [x] | [x] | [x] | [x] | [x] |
 | 18bby | Fable 5.1 / Opus 5.5 | local only | Vercel | [ ] | [ ] | [ ] | [ ] | [ ] |
 | crew | Opus 5.5 | tcgarvin/crew | Vercel | [ ] | [ ] | [ ] | [ ] | [ ] |
 | q4ck (synth droid voices) | Fable 5.1 | local only | web playground | [ ] | [ ] | [ ] | [ ] | [ ] |
@@ -53,6 +53,9 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 Later: fascar.
 
 Notes:
+- akron-marathon: the public copy is built with `python tools/build_runners.py --public <path>`
+  in the akron-marathon repo, then copied with index.html and courses.json to
+  `public/vibe/akron-marathon/`. Runners' names and ages are removed; relay team names stay.
 - peter-games: artillery, dreadnoughts, pirates, platformer, racing, superbuild aren't committed yet
   (GitHub links 404 until pushed). Web-playable: spacewar-web, dreadnoughts, superbuild
   (superbuild needs PeerJS's public signalling server).
@@ -84,7 +87,7 @@ For each project, in order:
 6. Update `src/data/vibe.ts`, deploy, tick the row in the table above.
 
 Suggested order (quick wins with live demos first):
-1. [ ] Akron Marathon (static page, host on tcgarvin.com)
+1. [x] Akron Marathon (static page, host on tcgarvin.com)
 2. [ ] Bob's World (already live)
 3. [ ] Crew, 18BBY, Hex General (check their Vercel deploys)
 4. [ ] Droid Voices (web playground)

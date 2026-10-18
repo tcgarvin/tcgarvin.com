@@ -1,0 +1,576 @@
+<meta charset="utf-8">
+<title>Akron Marathon Replay</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #f5f3ee; --panel: rgba(255, 253, 248, 0.94); --ink: #1d1f24; --muted: #6b6e78;
+    --line: #c9c6bd; --course: #4a4d56; --marker: #9a9da6;
+    --marathon: #1f5fbf; --half: #c2410c; --relay: #0f8a6a; --done: #a3a6ad;
+    --hilite: #e8b100; --hilite-ink: #1d1f24; --control-bg: #ffffff;
+    --font-body: "Barlow", "Segoe UI", system-ui, sans-serif;
+    --font-display: "Barlow Condensed", "Arial Narrow", "Barlow", sans-serif;
+    --gutter: 16px; --strip-h: 96px; --bar-h: 56px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground: #15171b; --panel: rgba(28, 30, 36, 0.94); --ink: #ecebe6; --muted: #9a9da6;
+      --line: #3a3d45; --course: #b8bac2; --marker: #6b6e78;
+      --marathon: #5e93e6; --half: #f0703a; --relay: #2fb894; --done: #5f626b;
+      --hilite: #ffca28; --hilite-ink: #15171b; --control-bg: #23262d;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #15171b; --panel: rgba(28, 30, 36, 0.94); --ink: #ecebe6; --muted: #9a9da6;
+    --line: #3a3d45; --course: #b8bac2; --marker: #6b6e78;
+    --marathon: #5e93e6; --half: #f0703a; --relay: #2fb894; --done: #5f626b;
+    --hilite: #ffca28; --hilite-ink: #15171b; --control-bg: #23262d;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; margin: 0; }
+  body { background: var(--ground); color: var(--ink); font: 14px/1.4 var(--font-body); overflow: hidden; }
+  #stage { position: absolute; inset: 0; }
+  canvas { display: block; touch-action: none; cursor: grab; }
+  canvas:active { cursor: grabbing; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+    padding: 8px 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12); }
+
+  /* header: title, search, filters toggle in one bar; filters open below it */
+  #top { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); left: var(--gutter); right: var(--gutter);
+    display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+  #top > * { pointer-events: auto; }
+  #bar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  h1 { font: 700 20px/1 var(--font-display); letter-spacing: 0.02em; text-transform: uppercase; margin: 0; white-space: nowrap; }
+  #subtitle { display: block; font: 500 12px/1.3 var(--font-body); color: var(--muted); margin-top: 3px; }
+  #search { position: relative; display: flex; gap: 6px; align-items: center; flex: 1 1 200px; max-width: 380px; min-width: 0; }
+  #filters-toggle { display: none; }
+  #search input { flex: 1; min-width: 0; font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 4px;
+    background: var(--control-bg); color: var(--ink); }
+  #search input:focus { outline: 2px solid var(--hilite); outline-offset: 1px; }
+  #matches { position: absolute; left: 0; right: 0; top: calc(100% + 6px); max-height: 40vh; overflow-y: auto;
+    padding: 4px 0; margin: 0; list-style: none; z-index: 2; }
+  #matches li { padding: 6px 12px; cursor: pointer; display: flex; gap: 10px; min-width: 0; }
+  #matches li > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #matches li:hover { background: var(--hilite); color: var(--hilite-ink); }
+  #matches .bibno { font-weight: 600; font-variant-numeric: tabular-nums; flex: 0 0 3.5em; }
+  #matches .who { color: var(--muted); margin-left: auto; }
+  #matches li:hover .who { color: inherit; }
+  #matches li.removed, #matches li.removed:hover { cursor: default; background: none; color: var(--muted); white-space: normal; }
+  #filters { display: flex; gap: 6px 14px; align-items: center; flex-wrap: wrap; }
+  #filters .group { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  #filters .group label:not(.chip) { color: var(--muted); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--control-bg); cursor: pointer; user-select: none;
+    font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .chip input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .chip .swatch { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+  .chip.off { opacity: 0.45; }
+  .chip:focus-within { outline: 2px solid var(--hilite); outline-offset: 1px; }
+  button { font: inherit; padding: 6px 12px; border-radius: 4px; border: 1px solid var(--line);
+    background: var(--control-bg); color: var(--ink); cursor: pointer; white-space: nowrap; }
+  button:focus-visible { outline: 2px solid var(--hilite); outline-offset: 1px; }
+  button[aria-pressed="true"] { background: var(--hilite); color: var(--hilite-ink); border-color: var(--hilite); }
+  select { font: inherit; padding: 4px 6px; background: var(--control-bg); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 4px; max-width: 100%; }
+
+  /* runner card: top right on desktop, a sheet above the strip on phones */
+  #info { position: absolute; right: var(--gutter); top: calc(128px + env(safe-area-inset-top, 0px)); width: 320px; max-width: calc(100vw - 2 * var(--gutter)); }
+  #info header { display: flex; gap: 10px; align-items: baseline; }
+  #info h2 { font: 700 18px/1.1 var(--font-display); margin: 0; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #info .final { font: 700 18px/1.1 var(--font-display); font-variant-numeric: tabular-nums; }
+  #info .meta { color: var(--muted); margin: 2px 0 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #info table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  #info td { padding: 1px 0; }
+  #info td:nth-child(2) { color: var(--muted); text-align: right; }
+  #info td:last-child { text-align: right; font-weight: 500; padding-left: 12px; }
+  #info .note { color: var(--muted); font-size: 12px; margin-top: 6px; }
+  #info .places { display: flex; gap: 6px 14px; flex-wrap: wrap; align-items: center; margin: 0 0 8px; font-variant-numeric: tabular-nums; }
+  #info .places strong { font: 700 16px/1 var(--font-display); }
+  #info .places .of { color: var(--muted); }
+  #cohort { padding: 2px 8px; font-size: 12px; margin-left: auto; }
+  #splits-toggle { display: none; }
+
+  /* transport bar */
+  #bottom { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 0;
+    height: calc(var(--bar-h) + env(safe-area-inset-bottom, 0px)); padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+    display: flex; gap: 10px; align-items: center; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 0; }
+  #clock { font: 700 22px/1 var(--font-display); font-variant-numeric: tabular-nums; min-width: 4.2em; }
+  #timing { display: inline-flex; }
+  #timing button { padding: 5px 9px; border-radius: 0; }
+  #timing button:first-child { border-radius: 4px 0 0 4px; }
+  #timing button:last-child { border-radius: 0 4px 4px 0; border-left: 0; }
+  #slider { flex: 1 1 100px; min-width: 60px; accent-color: var(--hilite); }
+  #count { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  @media (max-width: 700px) {
+    :root { --strip-h: 80px; --bar-h: 52px; }
+    #top { gap: 6px; }
+    #subtitle, #count { display: none; }
+    h1 { font-size: 17px; }
+    #bar { gap: 8px; }
+    #filters:not(.open) { display: none; }
+    #filters-toggle { display: inline-block; }
+    #search { max-width: none; }
+    #filters { flex-direction: column; align-items: stretch; gap: 8px; }
+    #info { top: auto; bottom: calc(var(--bar-h) + var(--strip-h) + 8px + env(safe-area-inset-bottom, 0px)); left: var(--gutter); right: var(--gutter); width: auto; max-width: none; }
+    #info:not(.open) table, #info:not(.open) .note { display: none; }
+    #info .places { margin-bottom: 0; margin-top: 4px; }
+    #splits-toggle { display: inline-block; padding: 2px 8px; font-size: 12px; }
+    #info table { max-height: 34vh; display: block; overflow-y: auto; }
+    #info tbody { display: table; width: 100%; }
+    #bottom button { padding: 6px 10px; }
+    #speed { padding: 4px 2px; }
+    #timing button { padding: 5px 7px; font-size: 13px; }
+    #clock { font-size: 19px; min-width: 3.8em; }
+  }
+</style>
+
+<div id="stage"><canvas id="c"></canvas></div>
+<div id="top">
+  <div class="card" id="bar">
+    <div><h1>Akron Marathon Replay</h1><small id="subtitle">Loading…</small></div>
+    <div id="search">
+      <input id="bib" placeholder="Find a bib, name or team" autocomplete="off" aria-label="Find a bib, name or team">
+      <button id="clear" title="Clear highlight">×</button>
+      <ul id="matches" class="card" hidden></ul>
+    </div>
+    <button id="filters-toggle" aria-pressed="false" aria-controls="filters">Filters</button>
+  </div>
+  <div class="card" id="filters">
+    <div class="group">
+      <label class="chip" style="--c: var(--marathon)"><input type="checkbox" id="f-marathon" checked><span class="swatch"></span>Marathon <span id="n-marathon"></span></label>
+      <label class="chip" style="--c: var(--half)"><input type="checkbox" id="f-half" checked><span class="swatch"></span>Half <span id="n-half"></span></label>
+      <label class="chip" style="--c: var(--relay)"><input type="checkbox" id="f-relay" checked><span class="swatch"></span>Relay <span id="n-relay"></span></label>
+    </div>
+    <div class="group">
+      <label class="chip"><input type="checkbox" id="s-M" checked>Men</label>
+      <label class="chip"><input type="checkbox" id="s-F" checked>Women</label>
+      <label class="chip"><input type="checkbox" id="s-X" checked>Teams</label>
+    </div>
+    <div class="group">
+      <label for="division">Division</label>
+      <select id="division"><option value="">All</option></select>
+    </div>
+  </div>
+</div>
+<div class="card" id="info" hidden></div>
+<div id="bottom" class="card">
+  <button id="play">Play</button>
+  <select id="speed" title="Playback speed">
+    <option value="30">30×</option>
+    <option value="60">60×</option>
+    <option value="120" selected>120×</option>
+    <option value="300">300×</option>
+  </select>
+  <div id="timing" role="group" aria-label="Time base">
+    <button id="mode-gun" aria-pressed="true" title="Time of day: where everyone actually was">Gun</button>
+    <button id="mode-chip" aria-pressed="false" title="Chip time: every start lined up at 0:00">Chip</button>
+  </div>
+  <span id="clock">7:00:00</span>
+  <input id="slider" type="range" min="0" max="1" step="1" value="0" aria-label="Race clock">
+  <span id="count"></span>
+</div>
+
+<script>
+(async function () {
+  const $ = id => document.getElementById(id);
+  const [courses, data] = await Promise.all([
+    fetch('courses.json').then(r => r.json()),
+    fetch('runners.json').then(r => r.json()),
+  ]);
+  $('subtitle').textContent = data.name;
+  if (data.names_removed) {
+    $('bib').placeholder = 'Find a bib or relay team';
+    $('bib').setAttribute('aria-label', 'Find a bib or relay team');
+  }
+  for (const race of ['marathon', 'half', 'relay']) {
+    $('n-' + race).textContent = data.counts[race];
+    $('f-' + race).parentElement.hidden = data.counts[race] === 0; // races not loaded yet stay out of the way
+  }
+  const halfLoaded = data.counts.half > 0;
+
+  // --- projection: lat/lon -> local metres, then metres -> screen ----------
+  const allPts = Object.values(courses).flatMap(c => c.points);
+  const lat0 = allPts.reduce((a, p) => a + p[0], 0) / allPts.length;
+  const lon0 = allPts.reduce((a, p) => a + p[1], 0) / allPts.length;
+  const kx = 111320 * Math.cos(lat0 * Math.PI / 180), ky = 110540;
+  const toXY = p => [(p[1] - lon0) * kx, -(p[0] - lat0) * ky];
+  for (const c of Object.values(courses)) {
+    c.xy = c.points.map(toXY);
+    c.arcs = c.points.map(p => p[2]);
+  }
+  const xs = allPts.map(p => toXY(p)[0]), ys = allPts.map(p => toXY(p)[1]);
+  const bounds = { x0: Math.min(...xs), x1: Math.max(...xs), y0: Math.min(...ys), y1: Math.max(...ys) };
+
+  // view = { scale (px per metre), tx, ty }
+  const canvas = $('c'), ctx = canvas.getContext('2d');
+  let W = 0, H = 0, view = { scale: 1, tx: 0, ty: 0 };
+  const cssPx = name => parseFloat(getComputedStyle(document.documentElement).getPropertyValue(name));
+  const STRIP = () => cssPx('--strip-h'), BAR = () => cssPx('--bar-h');
+  const isPhone = () => W <= 700;
+  function fitView() {
+    const padTop = isPhone() ? 80 : 150, padBottom = STRIP() + BAR() + (isPhone() ? 24 : 24), padSide = isPhone() ? 24 : 40;
+    const sw = (bounds.x1 - bounds.x0), sh = (bounds.y1 - bounds.y0);
+    view.scale = Math.min((W - 2 * padSide) / sw, (H - padTop - padBottom) / sh);
+    view.tx = (W - sw * view.scale) / 2 - bounds.x0 * view.scale;
+    view.ty = padTop + (H - padTop - padBottom - sh * view.scale) / 2 - bounds.y0 * view.scale;
+  }
+  const toScreen = ([x, y]) => [x * view.scale + view.tx, y * view.scale + view.ty];
+  function resize() {
+    W = innerWidth; H = innerHeight;
+    canvas.width = W * devicePixelRatio; canvas.height = H * devicePixelRatio;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    fitView(); draw();
+  }
+  addEventListener('resize', resize);
+
+  // pan and zoom
+  let drag = null;
+  canvas.addEventListener('pointerdown', e => { if (e.clientY >= stripGeometry().top) return; drag = { x: e.clientX, y: e.clientY }; canvas.setPointerCapture(e.pointerId); });
+  canvas.addEventListener('pointermove', e => {
+    if (!drag) return;
+    view.tx += e.clientX - drag.x; view.ty += e.clientY - drag.y; drag = { x: e.clientX, y: e.clientY }; draw();
+  });
+  canvas.addEventListener('pointerup', () => { drag = null; });
+  canvas.addEventListener('wheel', e => {
+    e.preventDefault();
+    const f = Math.exp(-e.deltaY * 0.0015);
+    view.tx = e.clientX - (e.clientX - view.tx) * f; view.ty = e.clientY - (e.clientY - view.ty) * f; view.scale *= f; draw();
+  }, { passive: false });
+  canvas.addEventListener('dblclick', () => { fitView(); draw(); });
+
+  // --- runner position at a clock time --------------------------------------
+  function posAt(runner, t) {
+    const s = runner.splits;
+    if (t < s[0][1]) return null;
+    if (t >= s[s.length - 1][1]) return { arc: s[s.length - 1][0], done: true };
+    let i = 0;
+    while (s[i + 1][1] <= t) i++;
+    const f = (t - s[i][1]) / (s[i + 1][1] - s[i][1]);
+    return { arc: s[i][0] + f * (s[i + 1][0] - s[i][0]), done: false };
+  }
+  // position on the course plus the unit normal there, so dots can sit beside the line
+  function xyAt(course, arc) {
+    const { xy, arcs } = course;
+    let lo = 0, hi = arcs.length - 1;
+    if (arc <= 0) hi = 1;
+    else if (arc >= course.length_m) lo = arcs.length - 2;
+    else while (hi - lo > 1) { const mid = (lo + hi) >> 1; if (arcs[mid] <= arc) lo = mid; else hi = mid; }
+    const f = Math.max(0, Math.min(1, (arc - arcs[lo]) / (arcs[hi] - arcs[lo])));
+    const dx = xy[hi][0] - xy[lo][0], dy = xy[hi][1] - xy[lo][1], len = Math.hypot(dx, dy) || 1;
+    return { x: xy[lo][0] + f * dx, y: xy[lo][1] + f * dy, nx: -dy / len, ny: dx / len };
+  }
+  // each runner keeps one sideways offset on the strip for the whole race: bell-shaped, in [-1, 1],
+  // seeded by bib so it never flickers. Crowds become a thick dark band, stragglers stay dots.
+  const hash = str => { let h = 2166136261; for (const ch of str) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return (h >>> 0) / 4294967296; };
+  for (const r of data.runners) {
+    const a = hash(r.race + r.bib), b = hash(r.bib + r.race + 'b');
+    r.side = (a + b) - 1; // sum of two uniforms: triangular, peaked at the line
+  }
+  const SPREAD_STRIP = 14; // px from the strip lane at the band's edge
+
+  // --- drawing --------------------------------------------------------------
+  let t = data.t_start, highlighted = null;
+  let mode = 'gun';
+  const chipEnd = Math.max(...data.runners.map(r => r.splits[r.splits.length - 1][1] - r.splits[0][1]));
+  // the clock a runner sees at viewer time t: their own elapsed time in chip mode
+  const clockFor = r => mode === 'chip' ? r.splits[0][1] + t : t;
+  const enabled = { marathon: true, half: true, relay: true };
+  const sexOn = { M: true, F: true, X: true };
+  let division = '';
+  const shown = r => enabled[r.race] && sexOn[r.sex] !== false && (!division || r.division === division);
+  const token = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+  function drawCourse(course, color, width) {
+    ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    ctx.beginPath();
+    course.xy.forEach((p, i) => { const [x, y] = toScreen(p); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+    ctx.stroke();
+  }
+  function stripGeometry() {
+    const stripH = STRIP(), left = 40, right = W - 40, top = H - BAR() - stripH;
+    const pxPerM = (right - left) / courses.marathon.length_m;
+    const lanes = halfLoaded ? { marathon: top + stripH * 0.28, half: top + stripH * 0.76 } : { marathon: top + stripH * 0.52 };
+    return { left, top, pxPerM, stripH, lanes };
+  }
+  function drawStrip(colors, doneColor, courseColor, markerColor, ink) {
+    const g = stripGeometry();
+    ctx.fillStyle = token('--panel');
+    ctx.fillRect(16, g.top, W - 32, g.stripH);
+    ctx.strokeStyle = token('--line'); ctx.lineWidth = 1;
+    ctx.strokeRect(16.5, g.top + 0.5, W - 33, g.stripH - 1);
+    ctx.font = '700 11px ' + token('--font-display'); ctx.textBaseline = 'middle';
+    const laneSpread = Object.keys(g.lanes).length > 1 ? SPREAD_STRIP * 0.6 : SPREAD_STRIP;
+    for (const [id, y] of Object.entries(g.lanes)) {
+      const course = courses[id];
+      const x1 = g.left + course.length_m * g.pxPerM;
+      ctx.strokeStyle = courseColor; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(g.left, y); ctx.lineTo(x1, y); ctx.stroke();
+      ctx.fillStyle = markerColor;
+      for (const [mile, arc] of Object.entries(course.mile_markers)) {
+        const x = g.left + arc * g.pxPerM;
+        ctx.fillRect(x - 0.5, y - 3, 1, 6);
+        if (mile % 5 === 0 && !isPhone()) { ctx.font = '600 9px ' + token('--font-body'); ctx.fillText(mile, x + 3, y - laneSpread - 4); }
+      }
+      ctx.fillStyle = ink; ctx.font = '700 10px ' + token('--font-display');
+      const laneName = id === 'half' ? 'HALF' : ['marathon', 'relay'].filter(r => data.counts[r] > 0).join(' · ').toUpperCase();
+      ctx.textAlign = 'left'; ctx.fillText(laneName, g.left, y - laneSpread - 4);
+      ctx.textAlign = 'right'; ctx.fillText('FINISH', x1, y + laneSpread + 4);
+      ctx.textAlign = 'left'; ctx.fillText('START', g.left, y + laneSpread + 4);
+    }
+    ctx.textAlign = 'left';
+    let hl = null;
+    for (const r of data.runners) {
+      if (!shown(r)) continue;
+      const p = posAt(r, clockFor(r));
+      if (!p) continue;
+      const spread = laneSpread;
+      const x = g.left + p.arc * g.pxPerM, y = g.lanes[r.course] + r.side * spread;
+      if (r === highlighted) { hl = [x, y]; continue; }
+      ctx.fillStyle = p.done ? doneColor : colors[r.race];
+      ctx.globalAlpha = p.done ? 0.3 : 0.55;
+      ctx.beginPath(); ctx.arc(x, y, 2.2, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    if (hl) {
+      ctx.fillStyle = token('--hilite'); ctx.strokeStyle = token('--hilite-ink'); ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(hl[0], hl[1], 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const colors = { marathon: token('--marathon'), half: token('--half'), relay: token('--relay') };
+    const doneColor = token('--done'), courseColor = token('--course'), markerColor = token('--marker'), ink = token('--ink');
+    // half course under the marathon course; they share the first miles
+    if (halfLoaded) drawCourse(courses.half, courseColor, 2);
+    drawCourse(courses.marathon, courseColor, 2);
+    ctx.fillStyle = markerColor;
+    ctx.font = '600 10px ' + token('--font-body'); ctx.textBaseline = 'middle';
+    for (const [mile, arc] of Object.entries(courses.marathon.mile_markers)) {
+      const q = xyAt(courses.marathon, arc);
+      const [x, y] = toScreen([q.x, q.y]);
+      ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI * 2); ctx.fill();
+      if (view.scale > 0.02 && mile % 5 === 0) ctx.fillText(mile, x + 6, y);
+    }
+    for (const which of ['start', 'finish']) {
+      const [x, y] = toScreen(toXY(courses.marathon[which]));
+      ctx.fillStyle = ink; ctx.font = '700 11px ' + token('--font-display');
+      ctx.fillText(which.toUpperCase(), x + 8, y + (which === 'start' ? -8 : 8));
+    }
+    let onCourse = 0, finished = 0, hl = null;
+    for (const r of data.runners) {
+      if (!shown(r)) continue;
+      const p = posAt(r, clockFor(r));
+      if (!p) continue;
+      if (p.done) finished++; else onCourse++;
+      // on the map dots stay on the line: a sideways offset jumps at sharp corners and
+      // muddles out-and-back roads; the strip is where the spread shows density
+      const q = xyAt(courses[r.course], p.arc);
+      const [x, y] = toScreen([q.x, q.y]);
+      if (r === highlighted) { hl = [x, y]; continue; }
+      ctx.fillStyle = p.done ? doneColor : colors[r.race];
+      ctx.globalAlpha = p.done ? 0.3 : 0.55;
+      ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    if (hl) {
+      const [x, y] = hl;
+      ctx.fillStyle = token('--hilite'); ctx.strokeStyle = token('--hilite-ink'); ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(x, y, 8, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.font = '700 14px ' + token('--font-display');
+      const label = `#${highlighted.bib} ${highlighted.name}`.trim().toUpperCase();
+      const w = ctx.measureText(label).width;
+      const lx = x + 12 + w + 12 > W - 16 ? x - 12 - w - 12 : x + 12;
+      ctx.fillStyle = token('--hilite'); ctx.fillRect(lx, y - 11, w + 12, 22);
+      ctx.fillStyle = token('--hilite-ink'); ctx.fillText(label, lx + 6, y);
+    }
+    drawStrip(colors, doneColor, courseColor, markerColor, ink);
+    $('count').textContent = `${onCourse} on course · ${finished} finished`;
+    $('clock').textContent = hms(t);
+  }
+  function hms(sec) {
+    sec = Math.floor(sec);
+    const h = Math.floor(sec / 3600), m = Math.floor(sec % 3600 / 60), s = sec % 60;
+    return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }
+  function elapsed(runner, sec) {
+    const d = sec - runner.splits[0][1];
+    const h = Math.floor(d / 3600), m = Math.floor(d % 3600 / 60), s = d % 60;
+    return (h ? `${h}:${String(m).padStart(2, '0')}` : String(m)) + ':' + String(s).padStart(2, '0');
+  }
+
+  // --- time control ---------------------------------------------------------
+  const slider = $('slider');
+  const tEnd = () => mode === 'chip' ? chipEnd : data.t_end;
+  function setMode(next) {
+    if (next === mode) return;
+    // keep the highlighted runner where they are across the switch; otherwise keep the fraction of the race
+    const anchor = highlighted || null;
+    if (anchor) t = next === 'chip' ? t - anchor.splits[0][1] : t + anchor.splits[0][1];
+    else t = next === 'chip' ? Math.max(0, t - data.t_start) : data.t_start + t;
+    mode = next;
+    slider.min = mode === 'chip' ? 0 : data.t_start; slider.max = tEnd();
+    t = Math.max(Number(slider.min), Math.min(tEnd(), t)); slider.value = t;
+    $('mode-gun').setAttribute('aria-pressed', mode === 'gun');
+    $('mode-chip').setAttribute('aria-pressed', mode === 'chip');
+    draw();
+  }
+  $('mode-gun').addEventListener('click', () => setMode('gun'));
+  $('mode-chip').addEventListener('click', () => setMode('chip'));
+  slider.min = data.t_start; slider.max = data.t_end; slider.value = t;
+  slider.addEventListener('input', () => { t = Number(slider.value); draw(); });
+  let playing = false, last = 0;
+  const playBtn = $('play');
+  function setPlaying(on) {
+    playing = on; playBtn.textContent = on ? 'Pause' : 'Play'; last = 0;
+    if (on) requestAnimationFrame(tick);
+  }
+  playBtn.addEventListener('click', () => setPlaying(!playing));
+  function tick(now) {
+    if (!playing) return;
+    if (last) {
+      t += (now - last) / 1000 * Number($('speed').value);
+      if (t >= tEnd()) { t = tEnd(); setPlaying(false); }
+      slider.value = t; draw();
+    }
+    last = now;
+    requestAnimationFrame(tick);
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === ' ' && e.target.tagName !== 'INPUT') { e.preventDefault(); setPlaying(!playing); }
+  });
+
+  // --- filters --------------------------------------------------------------
+  const raceLabel = { marathon: 'Marathon', half: 'Half Marathon', relay: 'Team Relay' };
+  const divisionSelect = $('division');
+  function fillDivisions() {
+    const seen = new Map();
+    for (const r of data.runners) {
+      if (!enabled[r.race] || !r.division) continue;
+      const key = `${r.race}|${r.division}`;
+      seen.set(key, (seen.get(key) || 0) + 1);
+    }
+    const keys = [...seen.keys()].sort();
+    const current = division;
+    divisionSelect.innerHTML = '<option value="">All</option>';
+    let group = '';
+    let optgroup = null;
+    for (const key of keys) {
+      const [race, div] = key.split('|');
+      if (race !== group) { group = race; optgroup = document.createElement('optgroup'); optgroup.label = raceLabel[race]; divisionSelect.appendChild(optgroup); }
+      const opt = document.createElement('option');
+      opt.value = div; opt.textContent = `${div} (${seen.get(key)})`;
+      optgroup.appendChild(opt);
+    }
+    // the same division name can exist in several races, so the value stays a bare division
+    divisionSelect.value = [...divisionSelect.options].some(o => o.value === current) ? current : '';
+    division = divisionSelect.value;
+  }
+  divisionSelect.addEventListener('change', () => { division = divisionSelect.value; draw(); });
+  for (const race of ['marathon', 'half', 'relay']) {
+    const box = $('f-' + race);
+    box.addEventListener('change', () => {
+      enabled[race] = box.checked; box.parentElement.classList.toggle('off', !box.checked); fillDivisions(); draw();
+    });
+  }
+  for (const sex of ['M', 'F', 'X']) {
+    const box = $('s-' + sex);
+    box.addEventListener('change', () => { sexOn[sex] = box.checked; box.parentElement.classList.toggle('off', !box.checked); draw(); });
+  }
+  fillDivisions();
+
+  // --- bib highlight --------------------------------------------------------
+  const info = $('info');
+  const matchList = $('matches');
+  function findRunners(query) {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+    const exactBib = data.runners.filter(r => r.bib === q);
+    if (exactBib.length) return exactBib;
+    return data.runners.filter(r => r.bib.startsWith(q) || r.name.toLowerCase().includes(q)).slice(0, 12);
+  }
+  // The published copy has no runners' names, so a name search explains that instead of finding nothing.
+  function namesRemovedNote(query) {
+    return data.names_removed && /[a-z]/i.test(query) && !findRunners(query).length
+      ? '<li class="removed">Runners\' names aren\'t in this copy. Search by bib number or relay team name.</li>' : '';
+  }
+  function showMatches(matches, query = '') {
+    const note = namesRemovedNote(query);
+    if (note) { matchList.innerHTML = note; matchList.hidden = false; return; }
+    matchList.innerHTML = matches.map((r, i) =>
+      `<li data-i="${i}"><span class="bibno">#${r.bib}</span><span>${r.name}</span><span class="who">${raceLabel[r.race]}${r.division ? ' · ' + r.division : ''}</span></li>`).join('');
+    matchList.hidden = matches.length === 0;
+    matchList.querySelectorAll('li').forEach(li => li.addEventListener('mousedown', e => { e.preventDefault(); pick(matches[Number(li.dataset.i)]); }));
+  }
+  function pick(runner) {
+    matchList.hidden = true;
+    bibInput.value = runner ? `${runner.bib} ${runner.name}`.trim() : '';
+    setHighlight(runner);
+  }
+  function setHighlight(runner) {
+    highlighted = runner || null;
+    if (!highlighted) { info.hidden = true; draw(); return; }
+    const r = highlighted, course = courses[r.course];
+    const mats = Object.entries(course.mats).sort((a, b) => a[1] - b[1]);
+    const rows = r.splits.map(([arc, sec]) => {
+      const mat = mats.find(m => Math.abs(m[1] - arc) < 1);
+      const name = mat ? mat[0].replace(/M$/, ' mi') : `${(arc / 1609.344).toFixed(1)} mi`;
+      return `<tr><td>${name}</td><td class="tod">${hms(sec)}</td><td>${elapsed(r, sec)}</td></tr>`;
+    }).join('');
+    const who = r.sex && r.age ? `${r.sex}${r.age} · ` : '';
+    const where = r.city ? ` · ${r.city}, ${r.state}` : '';
+    const finalTime = r.splits[r.splits.length - 1][0] >= course.length_m - 1 ? elapsed(r, r.splits[r.splits.length - 1][1]) : '';
+    const ordinal = n => n + (['th', 'st', 'nd', 'rd'][(n % 100 - 20) % 10] || ['th', 'st', 'nd', 'rd'][n % 100] || 'th');
+    const places = r.finished ? `<div class="places">
+        <span><strong>${ordinal(r.place)}</strong> <span class="of">of ${r.total} in the ${raceLabel[r.race]}</span></span>
+        <span><strong>${ordinal(r.div_place)}</strong> <span class="of">of ${r.div_total} in ${r.division}</span></span>
+        <button id="cohort" aria-pressed="${division === r.division}">${division === r.division ? 'Showing' : 'Show'} ${r.division} only</button>
+      </div>` : '';
+    info.innerHTML = `<header><h2>#${r.bib} ${r.name}</h2><span class="final">${finalTime}</span><button id="splits-toggle" aria-expanded="false">Splits</button></header>
+      <div class="meta">${raceLabel[r.race]} · ${who}${r.division}${where}</div>${places}
+      <table><tbody>${rows}</tbody></table>
+      <div class="note">Clock time, then elapsed from chip start. Places are among the runners loaded here.${shown(r) ? '' : ' Hidden by the current filters.'}</div>`;
+    info.hidden = false;
+    const toggle = $('splits-toggle');
+    toggle.addEventListener('click', () => { info.classList.toggle('open'); toggle.setAttribute('aria-expanded', info.classList.contains('open')); });
+    const cohort = $('cohort');
+    if (cohort) cohort.addEventListener('click', () => {
+      // one tap narrows the field to this runner's race and division; a second tap widens it again
+      const on = division !== r.division;
+      for (const race of ['marathon', 'half', 'relay']) { const box = $('f-' + race); box.checked = on ? race === r.race : true; box.dispatchEvent(new Event('change')); }
+      division = on ? r.division : ''; divisionSelect.value = division;
+      setHighlight(r);
+    });
+    draw();
+  }
+  $('filters-toggle').addEventListener('click', () => {
+    const open = $('filters').classList.toggle('open');
+    $('filters-toggle').setAttribute('aria-pressed', open);
+  });
+  const bibInput = $('bib');
+  bibInput.addEventListener('input', () => {
+    const matches = findRunners(bibInput.value);
+    showMatches(matches, bibInput.value);
+    if (matches.length === 1) setHighlight(matches[0]);
+  });
+  bibInput.addEventListener('keydown', e => { if (e.key === 'Enter') { const m = findRunners(bibInput.value); if (m.length) pick(m[0]); } if (e.key === 'Escape') matchList.hidden = true; });
+  bibInput.addEventListener('blur', () => { matchList.hidden = true; });
+  bibInput.addEventListener('focus', () => { if (!highlighted) showMatches(findRunners(bibInput.value)); });
+  $('clear').addEventListener('click', () => { pick(null); bibInput.focus(); });
+
+  // open mid-race so the first look shows the field spread out; ?bib= and ?t= still work when served locally
+  const q = new URLSearchParams(location.search);
+  t = q.get('t') ? Number(q.get('t')) : data.t_start + 5400;
+  slider.value = t;
+  resize();
+  // open on our own team so the page shows what it can do; ?bib= overrides when served locally
+  const DEFAULT_BIB = '8378';
+  const first = findRunners(q.get('bib') || DEFAULT_BIB);
+  if (first.length) pick(first[0]);
+  if (q.get('mode') === 'chip') setMode('chip');
+})();
+</script>
