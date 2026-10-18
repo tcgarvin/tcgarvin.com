@@ -39,8 +39,10 @@ import { eras } from "../data/vibe";
                     <div class="vibe-meta">
                       <span class="vibe-model">{project.model}</span>
                       <span>{project.dates}</span>
-                      {project.finished ? (
+                      {project.status === "finished" ? (
                         <span class="vibe-status vibe-finished">Finished</span>
+                      ) : project.status === "failed" ? (
+                        <span class="vibe-status vibe-failed">Failed</span>
                       ) : (
                         <span class="vibe-status">Unfinished</span>
                       )}
@@ -178,6 +180,11 @@ import { eras } from "../data/vibe";
   .vibe-finished {
     border-color: #3f8f5e;
     color: #6fcf97;
+  }
+
+  .vibe-failed {
+    border-color: #8f4a4a;
+    color: #e08a8a;
   }
 
   .vibe-title {

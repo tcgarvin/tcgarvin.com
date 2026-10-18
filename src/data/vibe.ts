@@ -15,9 +15,9 @@ export interface VibeProject {
   // The story leads the card; projects without one yet show a placeholder.
   why?: string;
   what: string;
-  // Most of these are experiments; only the few that are done say so, so nobody clicks through
-  // expecting a polished game.
-  finished?: boolean;
+  // Most of these are experiments and default to "unfinished"; the rest say so, so nobody clicks
+  // through expecting a polished game.
+  status?: "finished" | "failed";
   image?: string;
   imageAlt?: string;
   links: VibeLink[];
@@ -57,10 +57,14 @@ export const eras: VibeEra[] = [
       },
       {
         title: "Generals",
-        model: "Claude → Sonnet 4.6",
+        model: "Claude, then Opus 4.5 and Sonnet 4.6",
         dates: "Jun 2025 – Mar 2026",
-        what: "A WWII-style hex wargame for studying AI command hierarchies, with generals, colonels and captains as agents and full battle replays.",
-        links: [{ label: "Watch a replay", href: "#" }],
+        status: "failed",
+        why: "I wanted to explore two things with AI: imperfect information, and hierarchical communication between AIs. The hex grid never really worked, with all sorts of weird bugs, and we had so much trouble getting the engine itself going that we barely got to the generals. It might be fun to hand this back to a future model and see what it can do.",
+        what: "A WWII-style hex battle simulation meant for LLM generals: a major general and five commanders per side, each seeing only part of the field and passing orders down the chain. A Python engine writes battle logs and a Phaser app replays them.",
+        image: "/images/vibe/generals.webp",
+        imageAlt: "A plain green hex grid with a few red unit markers, a couple of woods and a road, and an empty Commander Log panel",
+        links: [{ label: "GitHub", href: "https://github.com/tcgarvin/generals" }],
       },
     ],
   },
@@ -186,7 +190,7 @@ export const eras: VibeEra[] = [
       {
         title: "Akron Marathon Replay",
         model: "Opus 5.5",
-        finished: true,
+        status: "finished",
         dates: "Sep 2026",
         what: "Every runner in the 2026 Akron Marathon, half marathon and team relay, moving around the course on their chip split times. Scrub the race clock, watch the field spread out, and find a bib.",
         why: "During the relay we could see our place in our own group, but not where we sat in the whole pack. I wanted to see that bell curve, then watch it move through the race, and it turned out to be easy to put a map under it. I had the idea just before my leg, and it was done before our last runner crossed the line, about an hour and a half later.",

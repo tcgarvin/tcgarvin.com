@@ -16,8 +16,9 @@ model that did most of the work.
   Preview: https://claude.ai/artifact/LmTgMMw1ZTSuaGr37VPFwJ
 - **Each card:** what it is, why I made it, primary model, screenshots, GitHub link, and a live
   link wherever possible (Netlify under tcgarvin.com, Claude artifact, Vercel, etc.).
-- **Finished or unfinished:** every card is tagged, so nobody clicks through expecting a polished
-  game. Unfinished is the default; set `finished: true` only for the done ones (so far: Akron).
+- **Finished, unfinished or failed:** every card is tagged, so nobody clicks through expecting a
+  polished game. Unfinished is the default; set `status: "finished"` (so far: Akron) or
+  `status: "failed"` (so far: Generals).
 
 ## Model timeline (from `Co-Authored-By` trailers)
 
@@ -40,7 +41,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 |---|---|---|---|---|---|---|---|---|
 | peter-games (arcade shelf) | Claude → Sonnet 4.6 | tcgarvin/peter-games | web ones: spacewar-web, dreadnoughts, superbuild | [ ] | [ ] | [ ] | [ ] | [ ] |
 | project-status | Claude | tcgarvin/project-status | needs OpenAI key | [ ] | [ ] | [ ] | [ ] | [ ] |
-| generals | Claude → Sonnet 4.6 | local only | replay viewer? | [ ] | [ ] | [ ] | [ ] | [ ] |
+| generals | Claude → Opus 4.5 / Sonnet 4.6 | tcgarvin/generals | none (failed; repo link only) | [x] | [x] | [x] | [x] | [x] |
 | game_nov_29 (QB sim) | ? (no git) | local only | pygame | [ ] | [ ] | [ ] | [ ] | [ ] |
 | grid | ? | local only | needs LLM keys | [ ] | [ ] | [ ] | [ ] | [ ] |
 | bobgame | Opus 4.5 → Fable 5.1 | tcgarvin/bobgame | jev-npc.tcgarvin.com | [x] | [x] | [x] | [x] | [x] |
@@ -94,10 +95,10 @@ For each project, in order:
 Suggested order (quick wins with live demos first):
 1. [x] Akron Marathon (static page, host on tcgarvin.com)
 2. [x] Bob's World (already live)
-3. [ ] Crew, 18BBY, Hex General (check their Vercel deploys)
-4. [ ] Droid Voices (web playground)
-5. [ ] SpaceSim2
-6. [ ] Generals (replay viewer)
+3. [x] Crew, 18BBY, Hex General (check their Vercel deploys)
+4. [x] Droid Voices (audition sheet at /vibe/droid-voices/)
+5. [ ] SpaceSim2 (deferred by Tim, 2026-10-18; come back later)
+6. [x] Generals (marked failed; repo link only)
 7. [ ] RL Fighter (video or GIF of a trained match)
 8. [ ] Project Status
 9. [ ] Grid (not on the page yet)
