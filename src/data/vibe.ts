@@ -141,7 +141,10 @@ export const eras: VibeEra[] = [
         what: "An 18xx-style game of hyperspace commerce, set 18 years before the Battle of Yavin. Corporations chart a shared hyperspace network and earn revenue by pairing the planets they can reach. Hotseat play in the browser.",
         image: "/images/vibe/18bby.webp",
         imageAlt: "18BBY game board showing a hyperspace map",
-        links: [{ label: "Play", href: "https://18bby.vercel.app/" }],
+        links: [
+          { label: "Play", href: "https://18bby.tcgarvin.com/" },
+          { label: "GitHub", href: "https://github.com/tcgarvin/18bby" },
+        ],
       },
       {
         title: "Droid Voices",
