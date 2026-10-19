@@ -62,9 +62,8 @@ Notes:
 - droid voices: `uv run --all-extras python scripts/build_audition.py OUT.html` in q4ck/synth (makes
   a few OpenRouter calls), then `scripts/split_audition.py OUT.html DIR` turns its inline WAVs into
   `clips/NNN.mp3` (15 MB → 2.5 MB); copy DIR to `public/vibe/droid-voices/`.
-- peter-games: artillery, dreadnoughts, pirates, platformer, racing, superbuild aren't committed yet
-  (GitHub links 404 until pushed). Web-playable: spacewar-web, dreadnoughts, superbuild
-  (superbuild needs PeerJS's public signalling server).
+- peter-games arcade: refresh with `rsync -a --delete --exclude tests --exclude tools --exclude 'src/'
+  --exclude '*.md' --exclude package.json ~/code/peter-games/arcade/ public/vibe/arcade/`.
 
 ## Prototypes (private artifacts)
 
@@ -106,13 +105,15 @@ Suggested order (quick wins with live demos first):
 10. [x] Quarterback Simulator (folded into Peter's Arcade, see Phase 3)
 
 ### Phase 3: Peter's Arcade
-- [ ] Decide the look (match the site, or keep the full arcade style as an exception).
-- [ ] Commit the six uncommitted games and push.
-- [ ] Host the three web games (spacewar-web, dreadnoughts, superbuild) on tcgarvin.com.
-- [ ] Capture screenshots or GIFs of the pygame games.
+- [x] Decide the look: full arcade style, with a painted cabinet per game.
+- [x] Commit the six uncommitted games and push (2026-10-19, with arcade/; node_modules now ignored).
+- [x] Host the arcade at /vibe/arcade/ (copy of peter-games/arcade without tests/, tools/, art src/ and docs).
+- [ ] Back up arcade/art/*/src/ (~75 MB of Codex originals, gitignored) as a GitHub release.
+- [ ] Decide on dreadnoughts, superbuild and spacewar-web (web-native, not in the arcade).
+- [x] Screenshot (the lobby) on the card.
 - [ ] Add Quarterback Simulator (`~/code/game_nov_29`, Nov 2025) as a guest game: a kid who had
   never used AI before made it with Tim in about one prompt.
-- [ ] Build the page and link it from the Peter's Games card.
+- [x] Build the page and link it from the Peter's Games card.
 
 ### Phase 4: Launch
 - [ ] Final pass on the intro copy and era notes.

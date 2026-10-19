@@ -41,10 +41,12 @@ export const eras: VibeEra[] = [
       {
         title: "Peter's Games",
         model: "Claude",
-        dates: "Feb 2025 – Mar 2026",
-        what: "Snake for three, Flappy Bird for three, Spacewar, Orcs Must Die 2D, pirates, artillery and a racing game. Peter designs them by talking to Claude.",
+        dates: "Feb 2025 – Oct 2026",
+        what: "Ten small games Peter designed by talking to Claude: artillery, Flappy Bird for two, snake, a platformer, monster slicing, pirates, racing, Spacewar, Orcs Must Die and line infantry. Each one is ported to the browser and has its own arcade cabinet.",
+        image: "/images/vibe/peters-arcade.webp",
+        imageAlt: "Peter's Arcade: painted cabinets for Artillery, Flappy and Snake standing in a row",
         links: [
-          { label: "Open the arcade", href: "#" },
+          { label: "Open the arcade", href: "/vibe/arcade/" },
           { label: "GitHub", href: "https://github.com/tcgarvin/peter-games" },
         ],
       },
