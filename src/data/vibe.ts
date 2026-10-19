@@ -43,7 +43,7 @@ export const eras: VibeEra[] = [
         model: "Claude, up to Opus 5.5",
         why: "When Claude Code first came out, I used it to let my kids make a bunch of games, mostly in pygame. This arcade memorializes them.",
         dates: "Feb 2025 – Oct 2026",
-        what: "Ten small games Peter designed by talking to Claude: artillery, Flappy Bird for two, snake, a platformer, monster slicing, pirates, racing, Spacewar, Orcs Must Die and line infantry. Each one is ported to the browser and has its own arcade cabinet.",
+        what: "Ten small games Peter designed by talking to Claude: artillery, Flappy Bird for two, snake, a platformer, monster slicing, pirates, racing, Spacewar, Orcs Must Die and line infantry, plus a guest game, Quarterback Simulator, from the Bullock Bros. Each one is ported to the browser and has its own arcade cabinet.",
         image: "/images/vibe/peters-arcade.webp",
         imageAlt: "Peter's Arcade: painted cabinets for Artillery, Flappy and Snake standing in a row",
         links: [

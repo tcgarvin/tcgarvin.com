@@ -111,8 +111,8 @@ Suggested order (quick wins with live demos first):
 - [x] Back up arcade/art/*/src/ as release art-originals-2026-10-19 on tcgarvin/peter-games.
 - [ ] Decide on dreadnoughts, superbuild and spacewar-web (web-native, not in the arcade).
 - [x] Screenshot (the lobby) on the card.
-- [ ] Add Quarterback Simulator (`~/code/game_nov_29`, Nov 2025) as a guest game: a kid who had
-  never used AI before made it with Tim in about one prompt.
+- [x] Add Quarterback Simulator as a guest game (one of the Bullock brothers made it with Tim in
+  about one prompt; its cabinet says "Bullock Bros."). Source in peter-games/quarterback/.
 - [x] Build the page and link it from the Peter's Games card.
 
 ### Phase 4: Launch
