@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "sync-arcade": "rsync -a --delete --exclude tests --exclude tools --exclude 'src/' --exclude '*.md' --exclude package.json --exclude node_modules ../peter-games/arcade/ public/vibe/arcade/"
   },
   "repository": {
     "type": "git",

@@ -62,8 +62,8 @@ Notes:
 - droid voices: `uv run --all-extras python scripts/build_audition.py OUT.html` in q4ck/synth (makes
   a few OpenRouter calls), then `scripts/split_audition.py OUT.html DIR` turns its inline WAVs into
   `clips/NNN.mp3` (15 MB → 2.5 MB); copy DIR to `public/vibe/droid-voices/`.
-- peter-games arcade: refresh with `rsync -a --delete --exclude tests --exclude tools --exclude 'src/'
-  --exclude '*.md' --exclude package.json ~/code/peter-games/arcade/ public/vibe/arcade/`.
+- peter-games arcade: ~/code/peter-games is the source of truth; `public/vibe/arcade/` is a deployed
+  copy. After changing the arcade there, run `npm run sync-arcade` here, then commit and push.
 
 ## Prototypes (private artifacts)
 
@@ -108,7 +108,7 @@ Suggested order (quick wins with live demos first):
 - [x] Decide the look: full arcade style, with a painted cabinet per game.
 - [x] Commit the six uncommitted games and push (2026-10-19, with arcade/; node_modules now ignored).
 - [x] Host the arcade at /vibe/arcade/ (copy of peter-games/arcade without tests/, tools/, art src/ and docs).
-- [ ] Back up arcade/art/*/src/ (~75 MB of Codex originals, gitignored) as a GitHub release.
+- [x] Back up arcade/art/*/src/ as release art-originals-2026-10-19 on tcgarvin/peter-games.
 - [ ] Decide on dreadnoughts, superbuild and spacewar-web (web-native, not in the arcade).
 - [x] Screenshot (the lobby) on the card.
 - [ ] Add Quarterback Simulator (`~/code/game_nov_29`, Nov 2025) as a guest game: a kid who had
