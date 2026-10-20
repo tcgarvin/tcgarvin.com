@@ -39,11 +39,11 @@ export const eras: VibeEra[] = [
     note: 'Commits from this stretch just say "Claude".',
     projects: [
       {
-        title: "Peter's Games",
+        title: "Peter's Arcade",
         model: "Claude, up to Opus 5.5",
         why: "When Claude Code first came out, I used it to let my kids make a bunch of games, mostly in pygame. This arcade memorializes them.",
         dates: "Feb 2025 – Oct 2026",
-        what: "Ten small games Peter designed by talking to Claude: artillery, Flappy Bird for two, snake, a platformer, monster slicing, pirates, racing, Spacewar, Orcs Must Die and line infantry, plus a guest game, Quarterback Simulator, from the Bullock Bros. Each one is ported to the browser and has its own arcade cabinet.",
+        what: "Over a dozen small games my kids made by talking to Claude: artillery, Flappy Bird for two, snake, a platformer, monster slicing, pirates, racing, Spacewar, Orcs Must Die and line infantry, plus a guest game, Quarterback Simulator, from the Bullock Bros. Each one is ported to the browser and has its own arcade cabinet.",
         image: "/images/vibe/peters-arcade.webp",
         imageAlt: "Peter's Arcade: painted cabinets for Artillery, Flappy and Snake standing in a row",
         links: [
@@ -95,7 +95,7 @@ export const eras: VibeEra[] = [
         title: "RL Fighter",
         model: "Opus 4.6",
         dates: "Feb 2026",
-        why: "I worked as a data scientist from 2018 until ChatGPT came out, and reinforcement learning was something I never got to play with as much as I wanted. This was just to scratch that itch. Someday it'll probably end up as one of Peter's games.",
+        why: "I worked as a data scientist from 2018 until ChatGPT came out, and reinforcement learning was something I never got to play with as much as I wanted. This was just to scratch that itch. Someday it'll probably end up in the arcade.",
         what: "2v2 space dogfights in a batched NumPy sim. All four ships share one policy, trained by PPO self-play, and a pygame viewer replays the matches.",
         image: "/images/vibe/rl-fighter.webp",
         imageAlt: "The pygame match viewer: blue and red ships with health bars inside a circular arena, and each ship's loadout and hit points listed at the top",

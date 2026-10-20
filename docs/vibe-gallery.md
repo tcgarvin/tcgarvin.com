@@ -8,7 +8,8 @@ model that did most of the work.
 
 - **Counts as vibe-coded:** Claude was clearly the primary tool.
 - **Main layout:** vertical "model eras" timeline, a sticky model label per era, cards within it.
-- **Peter's Games:** presented as an arcade shelf (its own section or page), since they're all
+- **Peter's Arcade:** "Peter's Arcade" is just the brand; prose says "my kids", never Peter by
+  name. Presented as an arcade shelf (its own section or page), since they're all
   arcade games.
 - **Design:** stay close to the existing site (breadcrumb header, Montserrat, dark palette), built
   with Layout.astro. Subtle scroll-linked card animation (CSS `animation-timeline: view()`), never
