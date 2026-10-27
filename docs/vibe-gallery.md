@@ -74,8 +74,7 @@ Notes:
 
 ## Plan
 
-The page ships at /vibe with no links to it and a `noindex` tag. Each step below gets deployed as
-it's done. Launch is adding the link.
+The page is live at /vibe, linked from the code page's intro.
 
 ### Phase 1: Foundation
 - [x] Prototype designs; Tim picked "close to the existing site" + subtle scroll animation.
@@ -110,12 +109,13 @@ Suggested order (quick wins with live demos first):
 - [x] Commit the six uncommitted games and push (2026-10-19, with arcade/; node_modules now ignored).
 - [x] Host the arcade at /vibe/arcade/ (copy of peter-games/arcade without tests/, tools/, art src/ and docs).
 - [x] Back up arcade/art/*/src/ as release art-originals-2026-10-19 on tcgarvin/peter-games.
-- [ ] Decide on dreadnoughts, superbuild and spacewar-web (web-native, not in the arcade).
+- [x] Dreadnoughts, superbuild and spacewar-web stay unpublished for now (Tim, 2026-10-27).
 - [x] Screenshot (the lobby) on the card.
 - [x] Add Quarterback Simulator as a guest game (one of the Bullock brothers made it with Tim in
   about one prompt; its cabinet says "Bullock Bros."). Source in peter-games/quarterback/.
 - [x] Build the page and link it from the Peter's Games card.
 
 ### Phase 4: Launch
-- [ ] Final pass on the intro copy and era notes.
-- [ ] Remove `noindex`, link from the home page and/or the code page, deploy.
+- [x] Final pass on the intro copy and era notes.
+- [x] Remove `noindex` and link from the code page's intro (Tim, 2026-10-27: code page is the
+  projects page; vibe stays a separate page; home page unchanged; no sitemap).
