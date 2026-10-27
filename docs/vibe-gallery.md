@@ -48,7 +48,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 | bobgame | Opus 4.5 → Fable 5.1 | tcgarvin/bobgame | jev-npc.tcgarvin.com | [x] | [x] | [x] | [x] | [x] |
 | rl-fighter | Opus 4.6 | tcgarvin/rl-fighter | none for now; later as one of Peter's games | [x] | [x] | [x] | [x] | [x] |
 | hex-general | Opus 4.8 → Fable 5 | tcgarvin/hex-general | hex-general.vercel.app (Google sign-in) | [x] | [x] | [x] | [x] | [x] |
-| spacesim2 | Claude → Fable 5.1 | tcgarvin/spacesim2 | ? | [ ] | [ ] | [ ] | [ ] | [ ] |
+| spacesim (was spacesim2) | hand-written 2018–21, Claude → Fable 5.1 | tcgarvin/spacesim (spacesim2 history merged in, 2026-10-18; spacesim2 archived) | none (local only) | [x] | [x] | [x] | [x] | [x] |
 | akron-marathon | Opus 5.5 | tcgarvin/akron-marathon (results kept out of git) | /vibe/akron-marathon/ (names and ages removed) | [x] | [x] | [x] | [x] | [x] |
 | 18bby | Fable 5.1 → Opus 5.5 | tcgarvin/18bby | 18bby.tcgarvin.com | [x] | [x] | [x] | [x] | [x] |
 | crew | Opus 5.5 | tcgarvin/crew | crew-neon-omega.vercel.app | [x] | [x] | [x] | [x] | [x] |
@@ -97,7 +97,7 @@ Suggested order (quick wins with live demos first):
 2. [x] Bob's World (already live)
 3. [x] Crew, 18BBY, Hex General (check their Vercel deploys)
 4. [x] Droid Voices (audition sheet at /vibe/droid-voices/)
-5. [ ] SpaceSim2 (deferred by Tim, 2026-10-18; come back later)
+5. [x] SpaceSim (story from Tim, 2026-10-27; repo link only, no live version; README run instructions to be handled in the spacesim repo)
 6. [x] Generals (marked failed; repo link only)
 7. [x] RL Fighter (screenshot is random actions: local checkpoints predate the current obs size
    and the training box was unreachable; swap in a trained match later)
