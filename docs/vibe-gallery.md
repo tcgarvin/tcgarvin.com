@@ -32,7 +32,7 @@ model that did most of the work.
 | Opus 4.8 | 2026-06 → 2026-07 | hex-general, spacesim2 |
 | Fable 5 | 2026-06 → 2026-09 | hex-general, spacesim2 |
 | Fable 5.1 | 2026-09 → 2026-10 | spacesim2, bobgame, 18bby, crew, q4ck/synth |
-| Opus 5.5 | 2026-09 → now | crew, 18bby |
+| Opus 5.5 | 2026-09 → now | crew, 18bby, rl-fighter |
 
 ## Projects
 
@@ -46,7 +46,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 | game_nov_29 (QB sim) | Claude | local only | moves to Peter's Arcade (guest game) | - | - | - | - | - |
 | grid | ? | local only | skipped (Tim, 2026-10-18) | - | - | - | - | - |
 | bobgame | Opus 4.5 → Fable 5.1 | tcgarvin/bobgame | jev-npc.tcgarvin.com | [x] | [x] | [x] | [x] | [x] |
-| rl-fighter | Opus 4.6 | tcgarvin/rl-fighter | none for now; later as one of Peter's games | [x] | [x] | [x] | [x] | [x] |
+| rl-fighter | Opus 4.6 → Opus 5.5 | tcgarvin/rl-fighter | rl-fighter.tcgarvin.com | [x] | [x] | [x] | [x] | [x] |
 | hex-general | Opus 4.8 → Fable 5 | tcgarvin/hex-general | hex-general.vercel.app (Google sign-in) | [x] | [x] | [x] | [x] | [x] |
 | spacesim (was spacesim2) | hand-written 2018–21, Claude → Fable 5.1 | tcgarvin/spacesim (spacesim2 history merged in, 2026-10-18; spacesim2 archived) | none (local only) | [x] | [x] | [x] | [x] | [x] |
 | akron-marathon | Opus 5.5 | tcgarvin/akron-marathon (results kept out of git) | /vibe/akron-marathon/ (names and ages removed) | [x] | [x] | [x] | [x] | [x] |
@@ -98,8 +98,7 @@ Suggested order (quick wins with live demos first):
 4. [x] Droid Voices (audition sheet at /vibe/droid-voices/)
 5. [x] SpaceSim (story from Tim, 2026-10-27; repo link only, no live version; README run instructions to be handled in the spacesim repo)
 6. [x] Generals (marked failed; repo link only)
-7. [x] RL Fighter (screenshot is random actions: local checkpoints predate the current obs size
-   and the training box was unreachable; swap in a trained match later)
+7. [x] RL Fighter (live at rl-fighter.tcgarvin.com; screenshot is a carrier battle from the live site)
 8. [x] Project Status (skipped by Tim, 2026-10-18; removed from the page)
 9. [x] Grid (skipped by Tim, 2026-10-18; never on the page)
 10. [x] Quarterback Simulator (folded into Peter's Arcade, see Phase 3)

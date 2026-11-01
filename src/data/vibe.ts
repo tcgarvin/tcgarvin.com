@@ -93,13 +93,16 @@ export const eras: VibeEra[] = [
     projects: [
       {
         title: "RL Fighter",
-        model: "Opus 4.6",
-        dates: "Feb 2026",
+        model: "Opus 4.6, then Opus 5.5",
+        dates: "Feb – Oct 2026",
         why: "I worked as a data scientist from 2018 until ChatGPT came out, and reinforcement learning was something I never got to play with as much as I wanted. This was just to scratch that itch. Someday it'll probably end up in the arcade.",
-        what: "2v2 space dogfights in a batched NumPy sim. All four ships share one policy, trained by PPO self-play, and a pygame viewer replays the matches.",
+        what: "A space battle that runs live in your browser, looping through team deathmatches, carrier battles and convoy escorts. One neural network, trained by PPO self-play, flies every fighter by thruster and trigger, while scripts handle the carriers and freighters.",
         image: "/images/vibe/rl-fighter.webp",
-        imageAlt: "The pygame match viewer: blue and red ships with health bars inside a circular arena, and each ship's loadout and hit points listed at the top",
-        links: [{ label: "GitHub", href: "https://github.com/tcgarvin/rl-fighter" }],
+        imageAlt: "A carrier battle on the live site: an orange carrier thrusting past a dark planet veined with glowing cracks, while blue and orange fighters trade fire and explosions bloom nearby",
+        links: [
+          { label: "Watch it live", href: "https://rl-fighter.tcgarvin.com" },
+          { label: "GitHub", href: "https://github.com/tcgarvin/rl-fighter" },
+        ],
       },
     ],
   },
