@@ -17,7 +17,7 @@
     "url": "https://github.com/tcgarvin/tcgarvin.com"
   },
   "dependencies": {
-    "astro": "^7.3.5",
+    "astro": "^7.4.7",
     "imagesloaded": "^5.0.0",
     "masonry-layout": "^4.2.2"
   }
