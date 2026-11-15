@@ -32,7 +32,8 @@ model that did most of the work.
 | Opus 4.8 | 2026-06 → 2026-07 | hex-general, spacesim2 |
 | Fable 5 | 2026-06 → 2026-09 | hex-general, spacesim2 |
 | Fable 5.1 | 2026-09 → 2026-10 | spacesim2, bobgame, 18bby, crew, q4ck/synth |
-| Opus 5.5 | 2026-09 → now | crew, 18bby, rl-fighter |
+| Opus 5.5 | 2026-09 → 2026-10 | crew, 18bby, rl-fighter |
+| Fable 5.2 | 2026-11 → now | chiptune songs (Claude artifacts) |
 
 ## Projects
 
@@ -52,6 +53,7 @@ Legend: `[ ]` todo. Per project: blurb, motivation (from Tim), model, screenshot
 | akron-marathon | Opus 5.5 | tcgarvin/akron-marathon (results kept out of git) | /vibe/akron-marathon/ (names and ages removed) | [x] | [x] | [x] | [x] | [x] |
 | 18bby | Fable 5.1 → Opus 5.5 | tcgarvin/18bby | 18bby.tcgarvin.com | [x] | [x] | [x] | [x] | [x] |
 | crew | Opus 5.5 | tcgarvin/crew | crew-neon-omega.vercel.app | [x] | [x] | [x] | [x] | [x] |
+| chiptune songs (Wub Quest, Starship Overture) | Fable 5.2 | none (were Claude artifacts) | /vibe/wub-quest/, /vibe/starship-overture/ | [x] | [x] | [x] | [x] | [x] |
 | q4ck (synth droid voices) | Fable 5.1 | tcgarvin/q4ck (synth/; Pollen's microduck clone untracked) | /vibe/droid-voices/ (audition sheet) | [x] | [x] | [x] | [x] | [x] |
 
 Later: fascar.
@@ -63,6 +65,10 @@ Notes:
 - droid voices: `uv run --all-extras python scripts/build_audition.py OUT.html` in q4ck/synth (makes
   a few OpenRouter calls), then `scripts/split_audition.py OUT.html DIR` turns its inline WAVs into
   `clips/NNN.mp3` (15 MB → 2.5 MB); copy DIR to `public/vibe/droid-voices/`.
+- chiptune songs: each is one self-contained HTML file copied from its Claude artifact (Wub Quest
+  https://claude.ai/artifact/GMGJP42oBsQTbsUshMajGh, Starship Overture
+  https://claude.ai/artifact/5A5Qtoqr3UnjzV9SbZ88w7) to `public/vibe/<slug>/index.html`. The hosted copies credit
+  Oliver only ("Made for Oliver by Claude"), per Tim. After changing an artifact, copy it again and redo that edit.
 - peter-games arcade: ~/code/peter-games is the source of truth; `public/vibe/arcade/` is a deployed
   copy. After changing the arcade there, run `npm run sync-arcade` here, then commit and push.
 

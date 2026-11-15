@@ -174,7 +174,7 @@ export const eras: VibeEra[] = [
   {
     id: "opus-5-5",
     model: "Opus 5.5",
-    dates: "Sep 2026 – now",
+    dates: "Sep – Oct 2026",
     note: "439 commits in two weeks.",
     projects: [
       {
@@ -202,6 +202,28 @@ export const eras: VibeEra[] = [
         links: [
           { label: "Watch the race", href: "/vibe/akron-marathon/" },
           { label: "GitHub", href: "https://github.com/tcgarvin/akron-marathon" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "fable-5-2",
+    model: "Fable 5.2",
+    dates: "Nov 2026 – now",
+    note: "Started in a drive-through line, finished as two songs.",
+    projects: [
+      {
+        title: "Oliver's Chiptune Songs",
+        model: "Fable 5.2",
+        status: "finished",
+        dates: "Nov 2026",
+        why: "I'd seen a demo of someone having an AI write music as code, and it was still in my head while my son Oliver and I were sitting in a drive-through line, killing time. I asked if he wanted to have Claude make some music. He picked what kind, and we went from there.",
+        what: "Two songs written as code, with no audio files: your browser builds every sound while it plays. Wub Quest goes from chiptune to house to a dubstep boss fight, with a creature that sings along with the wubs. Starship Overture is a little space opera in ten scenes: a rocket launches, waltzes with a theremin, dodges asteroids and fights the Punchtopus, while an orchestra joins the chiptune and the pixel art gains colors. Each has a song map, and you can mute any layer.",
+        image: "/images/vibe/chiptune-songs.webp",
+        imageAlt: "Two songs side by side: an angry purple creature singing a dubstep wub over a neon grid, and the pixel-art Punchtopus raising its boxing gloves over a small white rocket",
+        links: [
+          { label: "Wub Quest", href: "/vibe/wub-quest/" },
+          { label: "Starship Overture", href: "/vibe/starship-overture/" },
         ],
       },
     ],
